@@ -6,6 +6,8 @@ import RaisedButton from 'material-ui/RaisedButton';
 import getMuiTheme from 'material-ui/styles/getMuiTheme';
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider';
 
+import test from '../webSocket/client.js'
+
 const style = {
   margin: 12,
 };
@@ -28,14 +30,14 @@ class Footer extends Component {
       <MuiThemeProvider muiTheme={muiTheme}>
 
         <div>
-              
+
           <p>
 
             <FilterLink filter="SHOW_ALL">
               <RaisedButton label="Show all" style={style} />
             </FilterLink>
             <FilterLink filter="SHOW_ACTIVE">
-              <RaisedButton label="Active" primary={true} style={style} />
+              <RaisedButton label=test.string primary={true} style={style} />
             </FilterLink>
             <FilterLink filter="SHOW_COMPLETED">
               <RaisedButton label="Complated" secondary={true} style={style} />
