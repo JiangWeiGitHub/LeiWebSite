@@ -1,18 +1,31 @@
-import React from 'react'
 import { connect } from 'react-redux'
-import actionSet from '../action/actionSet.js'
 
-import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import getMuiTheme from 'material-ui/styles/getMuiTheme'
+import actionSet from '../actions/actionSet.js'
+import Snackbar from '../components/snackbar.js'
 
-import RaisedButton from 'material-ui/RaisedButton'
-import TextField from 'material-ui/TextField'
-import {deepOrange500} from 'material-ui/styles
-
-const mapStateToProps = (state, ownProps) => {
+const mapStateToProps = (state) => {
   return {
-    status
+    isshow: state.isshow
   }
 }
 
+const mapDispatchToProps = (dispatch) => {
+  return {
+    handleShowTap: () => {
+      dispatch(actionSet.showSnack)
+    },
+    handleHideTap: () => {
+      dispatch(actionSet.hideSnack)
+    },
+    handleRequestClose: () => {
+      dispatch(actionSet.hideSnack)
+    }
+  }
+}
 
+const SnackbarContainer = connect(
+  mapStateToProps,
+  mapDispatchToProps
+)(Snackbar)
+
+export default SnackbarContainer
