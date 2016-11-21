@@ -4,16 +4,20 @@ import ActionSet from '../../actions/actionSet.js'
 import DrawerSkinComponent from '../presentation/DrawerSkin.js'
 
 const mapStateToProps = (state) => {
-  return state
+  return {
+    isOpen: state.isOpen
+  }
 }
 
 const mapDispatchToProps = (dispatch) => {
-  return dispatch
+  return {
+    switchOpenSkin: () => dispatch(ActionSet.switchOpenSkin())
+  }
 }
 
 const DrawerSkin = connect(
-  //mapStateToProps,
-  //mapDispatchToProps
+  mapStateToProps,
+  mapDispatchToProps
 )(DrawerSkinComponent)
 
 export default DrawerSkin

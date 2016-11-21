@@ -13,17 +13,12 @@ const actionSet = {
   },
 
   switchOpenSkin: () => {
-    console.log(this.state)
+    console.log("actionSet")
     return {
       type: 'SWITCH_OPEN_SKIN'
     }
   }
 
 }
-
-
-//const actionSet = { type: 'switchOpenSkin' }
-
-
 
 export default actionSet

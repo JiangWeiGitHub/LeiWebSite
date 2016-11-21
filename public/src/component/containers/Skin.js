@@ -4,6 +4,7 @@ import ActionSet from '../../actions/actionSet.js'
 import SkinComponent from '../presentation/Skin.js'
 
 const mapStateToProps = (state) => {
+  console.log("skin container")
   return {
     isOpen: state.isOpen
   }

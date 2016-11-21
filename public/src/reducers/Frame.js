@@ -4,17 +4,18 @@ const defaultState = {
 }
 */
 
-const SkinState = (state = { isOpen: false }, action) => {
+const FrameState = (state = { isOpen: false }, action) => {
+  console.log(state)
   switch (action.type) {
     case 'SHOW_SKIN':
       return {isopen: true}
     case 'HIDE_SKIN':
       return {isopen: false}
     case 'SWITCH_OPEN_SKIN':
-      return {isOpen: !isOpen}
+      return {isOpen: !state.isOpen}
     default:
       return state
   }
 }
 
-export default SkinState
+export default FrameState

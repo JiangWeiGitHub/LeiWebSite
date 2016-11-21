@@ -1,9 +1,10 @@
 import { connect } from 'react-redux'
 
-import ActionSet from '../../actions/actionSet.js'
+import switchOpenSkinaaa from '../../actions/actionSet.js'
 import FrameComponent from '../presentation/Frame.js'
 
 const mapStateToProps = (state) => {
+  console.log(state)
   return {
     isOpen: state.isOpen
   }
@@ -11,7 +12,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    switchOpenSkin: () => dispatch(ActionSet.switchOpenSkin())
+    switchOpenSkin: () => dispatch(switchOpenSkinaaa)
   }
 }
 

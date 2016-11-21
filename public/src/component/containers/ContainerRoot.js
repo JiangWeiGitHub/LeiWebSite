@@ -1,6 +1,5 @@
 import React from 'react'
 
-import Backgroud from './Background.js'
 import Frame from './Frame.js'
 import DrawerSkin from './DrawerSkin.js'
 
@@ -16,7 +15,6 @@ const background = {
 
 const ContainerRoot = () => (
   <div style={background}>
-//    <Backgroud />
     <Frame />
     <DrawerSkin />
   </div>

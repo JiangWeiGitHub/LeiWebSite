@@ -18,9 +18,10 @@ class Skin extends React.Component {
   }
 
   render() {
+    const { switchOpenSkin } = this.props
     return (
       <div style={style}>
-        <IconButton tooltip="Change Skin" onClick={ this.props.switchOpenSkin }>
+        <IconButton tooltip="Change Skin" onClick={ switchOpenSkin }>
           <ActionHome />
         </IconButton>
       </div>
