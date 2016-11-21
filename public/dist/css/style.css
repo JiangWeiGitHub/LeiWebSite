@@ -1,11 +1,25 @@
-.background{
-  display: flex;
-  background: url(../images/backgrounds/bg_img01.jpg) no-repeat 0px 0;
-  background-size: cover;
-  width: 100%;
-  height: 100%
+html,body{
+  margin: 0px;
+  height: 100%;
 }
 
+#root{
+  width: 100%;
+  height: 100%;
+}
+
+/*
+.background{
+  display: flex;
+  background: url(../images/backgrounds/bg_img001.jpg) no-repeat 0px 0;
+  background-size: cover;
+  width: 100%;
+  height: 100%;
+}
+*/
+
+/*
 .frame{
     margin:auto auto;
 }
+*/

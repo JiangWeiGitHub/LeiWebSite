@@ -8,6 +8,9 @@ import {deepOrange500} from 'material-ui/styles/colors'
 
 import Paper from 'material-ui/Paper'
 
+import Skin from './Skin.js'
+import Wisnuc from './Wisnuc.js'
+
 const muiTheme = getMuiTheme({
   palette: {
     accent1Color: deepOrange500
@@ -15,15 +18,11 @@ const muiTheme = getMuiTheme({
 })
 
 const style = {
-  height: 100,
-  width: 100,
-  //'margin': 'auto auto',
-  'left':'50%',
-  'top':'50%',
-  textAlign: 'center',
-  'display': 'flex',
-  'justify-content': 'center',
-  'align-items': 'center'
+  'height': 600,
+  'width': 800,
+  'margin': 'auto auto',
+  'textAlign': 'center',
+  'position': 'relative',
 }
 
 class Frame extends React.Component {
@@ -34,8 +33,11 @@ class Frame extends React.Component {
   render() {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
-        <div class='frame'>
-          <Paper style={style} zDepth={2} />
+        <div>
+          <Paper style={style} zDepth={2}>
+            <Wisnuc />
+            <Skin />
+          </Paper>
         </div>
       </MuiThemeProvider>
     )

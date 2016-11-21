@@ -16,7 +16,8 @@
     ]
   },
   "scripts": {
-    "build": "babel src/ -d lib/"
+    "build": "babel src/ -d lib/",
+    "start": "gulp transform && gulp webpack:build && node lib/app.js"
   },
   "author": "",
   "license": "ISC",

@@ -1,7 +1,7 @@
 import { connect } from 'react-redux'
 
 import ActionSet from '../../actions/actionSet.js'
-import FrameComponent from '../presentation/Frame.js'
+import SkinComponent from '../presentation/Skin.js'
 
 const mapStateToProps = (state) => {
   return {
@@ -15,9 +15,9 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-const Frame = connect(
+const Skin = connect(
   mapStateToProps,
   mapDispatchToProps
-)(FrameComponent)
+)(SkinComponent)
 
-export default Frame
+export default Skin

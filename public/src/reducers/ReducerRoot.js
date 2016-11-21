@@ -1,11 +1,11 @@
 import { combineReducers } from 'redux'
 
 import BackgroundState from './Background.js'
-import FrameState from './Frame.js'
+import SkinState from './Frame.js'
 
 const reducerRoot = combineReducers({
   BackgroundState,
-  FrameState
+  SkinState
 })
 
 export default reducerRoot

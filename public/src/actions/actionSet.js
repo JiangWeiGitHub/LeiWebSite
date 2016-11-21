@@ -1,22 +1,29 @@
-/*
 const actionSet = {
 
-  showSnack : (text) => {
+  showSkin: () => {
     return {
-      type: 'SHOW_SNACK',
-      text
+      type: 'SHOW_SKIN'
     }
   },
 
-  hideSnack : () => {
+  hideSkin: () => {
     return {
-      type: 'HIDE_SNACK'
+      type: 'HIDE_SKIN'
+    }
+  },
+
+  switchOpenSkin: () => {
+    console.log(this.state)
+    return {
+      type: 'SWITCH_OPEN_SKIN'
     }
   }
 
 }
-*/
 
-const actionSet = { type: 'increase' }
+
+//const actionSet = { type: 'switchOpenSkin' }
+
+
 
 export default actionSet
