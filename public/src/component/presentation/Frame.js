@@ -10,6 +10,7 @@ import Paper from 'material-ui/Paper'
 
 import Skin from './Skin.js'
 import Wisnuc from './Wisnuc.js'
+import DrawerSkin from './DrawerSkin.js'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -31,12 +32,16 @@ class Frame extends React.Component {
   }
 
   render() {
+
+    const { isOpen, switchOpenSkin } = this.props
+
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
           <Paper style={style} zDepth={2}>
             <Wisnuc />
-            <Skin />
+            <Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
+            <DrawerSkin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
           </Paper>
         </div>
       </MuiThemeProvider>

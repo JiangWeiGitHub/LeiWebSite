@@ -1,10 +1,4 @@
-/*
-const defaultState = {
-  isOpen: false
-}
-*/
-
-const FrameState = (state = { isOpen: false }, action) => {
+const SkinState = (state = { isOpen: false }, action) => {
   switch (action.type) {
     case 'SHOW_SKIN':
       return {isopen: true}
@@ -17,4 +11,5 @@ const FrameState = (state = { isOpen: false }, action) => {
   }
 }
 
-export default FrameState
+export default SkinState
+

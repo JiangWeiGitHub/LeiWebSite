@@ -13,11 +13,18 @@ const actionSet = {
   },
 
   switchOpenSkin: () => {
-    console.log("actionSet")
     return {
       type: 'SWITCH_OPEN_SKIN'
     }
-  }
+  },
+
+  onChecked: () => {
+    return {
+      type: 'SKIN_CHECKED',
+      url
+    }
+  },
+
 
 }
 

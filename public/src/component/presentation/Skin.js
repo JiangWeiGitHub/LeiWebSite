@@ -18,7 +18,9 @@ class Skin extends React.Component {
   }
 
   render() {
-    const { switchOpenSkin } = this.props
+
+    const { isOpen, switchOpenSkin } = this.props
+
     return (
       <div style={style}>
         <IconButton tooltip="Change Skin" onClick={ switchOpenSkin }>
@@ -29,8 +31,8 @@ class Skin extends React.Component {
   }
 }
 
-Skin.propTypes = {
-  switchOpenSkin: PropTypes.func.isRequired,
-}
+//Skin.propTypes = {
+//  switchOpenSkin: PropTypes.func.isRequired,
+//}
 
 export default Skin

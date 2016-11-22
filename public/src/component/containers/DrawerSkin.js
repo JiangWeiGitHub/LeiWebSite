@@ -5,13 +5,14 @@ import DrawerSkinComponent from '../presentation/DrawerSkin.js'
 
 const mapStateToProps = (state) => {
   return {
-    isOpen: state.isOpen
+    isOpen: state.isOpen,
+    isChecked: state.isChecked
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    switchOpenSkin: () => dispatch(ActionSet.switchOpenSkin())
+    onChecked: () => dispatch(ActionSet.onChecked())
   }
 }
 
