@@ -1,4 +1,4 @@
-# Lei Web Site
+# Simplest Web Site with react & redux & material ui
 
 [Reference Link: **Redux**](http://redux.js.org/docs/basics/UsageWithReact.html)<p>
 [Reference Link: **React**](https://facebook.github.io/react/docs/thinking-in-react.html)<p>
@@ -11,6 +11,3 @@
   + npm start
   + open browser to see the webpage just like: `192.168.5.110:3000`
 
-###LeiWebSite
-
-[Reference](http://redux.js.org/docs/basics/UsageWithReact.html)
