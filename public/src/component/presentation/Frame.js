@@ -19,7 +19,7 @@ const muiTheme = getMuiTheme({
 })
 
 const style = {
-  'height': 600,
+  'height': 500,
   'width': 800,
   'margin': 'auto auto',
   'textAlign': 'center',
@@ -40,7 +40,6 @@ class Frame extends React.Component {
         <div>
           <Paper style={style} zDepth={2}>
             <Wisnuc />
-            <Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
             <DrawerSkin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
           </Paper>
         </div>
