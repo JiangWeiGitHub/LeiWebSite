@@ -11,6 +11,8 @@ import ListItem from 'material-ui/List/ListItem'
 import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
 
+//import { getUserInfor } from '../../webSocket/client'
+
 import {
   yellow200,
   amber200,
@@ -31,6 +33,29 @@ import {
   grey50,
   grey700,
 } from 'material-ui/styles/colors'
+
+let colorArray = [
+  yellow200,
+  amber200,
+  orange200,
+  deepOrange200,
+  red200,
+  pink200,
+  purple200,
+  deepPurple200,
+  indigo200,
+  blue200,
+  lightBlue200,
+  cyan200,
+  teal200,
+  green200,
+  lightGreen200,
+  lime200, 
+]
+
+let randomColor = () => {
+  return colorArray[Math.round(Math.random()*16)]
+}
 
 import Skin from './Skin.js'
 
@@ -82,7 +107,6 @@ const skin = {
   'height': '100%',
   'top': '30',
   'right': '40',
-//'background-color': "#00ff00",
 }
 
 const secondLine = {
@@ -225,7 +249,7 @@ class Wisnuc extends React.Component {
               <IconButton style={userButton}>
                 <Avatar
                   color={grey50}
-                  backgroundColor={blue200}
+                  backgroundColor={randomColor()}
                   size={40}
                 >
                   A
@@ -239,7 +263,7 @@ class Wisnuc extends React.Component {
               <IconButton style={userButton}>
                 <Avatar
                   color={grey50}
-                  backgroundColor={purple200}
+                  backgroundColor={randomColor()}
                   size={40}
                 >
                   M
@@ -253,7 +277,7 @@ class Wisnuc extends React.Component {
               <IconButton style={userButton}>
                 <Avatar
                   color={grey50}
-                  backgroundColor={lime200}
+                  backgroundColor={randomColor()}
                   size={40}
                 >
                   T
@@ -267,7 +291,7 @@ class Wisnuc extends React.Component {
               <IconButton style={userButton}>
                 <Avatar
                   color={grey50}
-                  backgroundColor={teal200}
+                  backgroundColor={randomColor()}
                   size={40}
                 >
                   S
@@ -281,7 +305,7 @@ class Wisnuc extends React.Component {
               <IconButton style={userButton}>
                 <Avatar
                   color={grey50}
-                  backgroundColor={orange200}
+                  backgroundColor={randomColor()}
                   size={40}
                 >
                   C
