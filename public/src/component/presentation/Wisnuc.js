@@ -150,14 +150,51 @@ const fifthLine = {
 const sixthLine = {
   'position': 'absolute',
   'width': '100%',
-  'top': '75%',
-  'height': '25%',
+  'top': '77%',
+  'height': '15%',
   'display': 'flex',
   'justify-content': 'center',
+  'align-content': 'center',
+  'align-items': 'flex-start',
 }
 
 const user = {
-'background-color':'#987943',
+  'height': '100%',
+  'width': '10%',
+  'display': 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'flex-direction':'column',
+  'align-content': 'center',
+}
+
+const userIcon = {
+  'height': '60%',
+  'align-items': 'center',
+  'display': 'flex',
+  'justify-content': 'center',
+  'flex-direction':'column',
+  'align-content': 'center',
+}
+
+const userName = {
+  'height': '40%',
+  'display': 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'flex-direction':'column',
+  'align-content': 'center',
+}
+
+const userButton = {
+  'display': 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'flex-direction':'column',
+  'align-content': 'center',
+
+  'padding': '0',
+  'margin': '0',
 }
 
 class Wisnuc extends React.Component {
@@ -182,60 +219,78 @@ class Wisnuc extends React.Component {
         <div style={fourthLine}>Testing Machine No. 110</div>
         <div style={fifthLine}>192.168.1.110</div>
         <div style={sixthLine}>
+          <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
           <div style={user}>
-            <div>
-              <ListItem
-                disabled={true}
-                leftAvatar={
-                  <Avatar
-                    color={grey50}
-                    backgroundColor={blue200}
-                    size={50}
-                  >
-                    A
-                  </Avatar>
-                }
-              >
-              </ListItem>
+            <div style={userIcon}>
+              <IconButton style={userButton}>
+                <Avatar
+                  color={grey50}
+                  backgroundColor={blue200}
+                  size={40}
+                >
+                  A
+                </Avatar>
+              </IconButton>
             </div>
-            <div>Alice</div>
+            <div style={userName}>Alice</div>
           </div>
           <div style={user}>
-            <div>
-              <ListItem
-                disabled={true}
-                leftAvatar={
-                  <Avatar
-                    color={grey50}
-                    backgroundColor={purple200}
-                    size={50}
-                  >
-                    M
-                  </Avatar>
-                }
-              >
-              </ListItem>
+            <div style={userIcon}>
+              <IconButton style={userButton}>
+                <Avatar
+                  color={grey50}
+                  backgroundColor={purple200}
+                  size={40}
+                >
+                  M
+                </Avatar>
+              </IconButton>
             </div>
-            <div>Mike</div>
+            <div style={userName}>Mike</div>
           </div>
           <div style={user}>
-            <div>
-              <ListItem
-                disabled={true}
-                leftAvatar={
-                  <Avatar
-                    color={grey50}
-                    backgroundColor={lime200}
-                    size={50}
-                  >
-                    T
-                  </Avatar>
-                }
-              >
-              </ListItem>
+            <div style={userIcon}>
+              <IconButton style={userButton}>
+                <Avatar
+                  color={grey50}
+                  backgroundColor={lime200}
+                  size={40}
+                >
+                  T
+                </Avatar>
+              </IconButton>
             </div>
-            <div>Tom</div>
+            <div style={userName}>Tom</div>
           </div>
+          <div style={user}>
+            <div style={userIcon}>
+              <IconButton style={userButton}>
+                <Avatar
+                  color={grey50}
+                  backgroundColor={teal200}
+                  size={40}
+                >
+                  S
+                </Avatar>
+              </IconButton>
+            </div>
+            <div style={userName}>Sean</div>
+          </div>
+          <div style={user}>
+            <div style={userIcon}>
+              <IconButton style={userButton}>
+                <Avatar
+                  color={grey50}
+                  backgroundColor={orange200}
+                  size={40}
+                >
+                  C
+                </Avatar>
+              </IconButton>
+            </div>
+            <div style={userName}>Cody</div>
+          </div>
+          <div style={nextIcon}><IconButton><NextIcon color={grey700} /></IconButton></div>
         </div>
       </div>
     )
