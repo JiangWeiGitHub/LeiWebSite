@@ -11,7 +11,8 @@ import ListItem from 'material-ui/List/ListItem'
 import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
 
-//import { getUserInfor } from '../../webSocket/client'
+import Skin from './Skin.js'
+import { getUserName } from '../../webSocket/getUserName'
 
 import {
   yellow200,
@@ -56,8 +57,6 @@ let colorArray = [
 let randomColor = () => {
   return colorArray[Math.round(Math.random()*16)]
 }
-
-import Skin from './Skin.js'
 
 const wholeWisnuc = {
   'position': 'absolute',
