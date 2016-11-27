@@ -225,6 +225,35 @@ class Wisnuc extends React.Component {
     super(props)
   }
 
+  getMachineInfor () {
+    return [
+      {
+        name: 'Testing Machine No. 110',
+        ip: '192.168.5.100',
+        users: [
+          'Jerry',
+          'Tom',
+          'John',
+          'Grace',
+          'Emma',
+          'Lucy',
+          'Lily',
+          'Jan',
+          'Kate',
+        ],
+      },
+      {
+        name: 'Testing Machine No. 111',
+        ip: '192.168.5.110',
+        users: [
+          'Adam',
+          'Bob',
+          'Cody',
+        ],
+      },      
+    ]
+  }
+
   render() {
     return (
       <div style={wholeWisnuc}>
@@ -239,8 +268,8 @@ class Wisnuc extends React.Component {
           <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
           <div style={nextIcon}><IconButton><NextIcon color={grey700} /></IconButton></div>
         </div>
-        <div style={fourthLine}>Testing Machine No. 110</div>
-        <div style={fifthLine}>192.168.1.110</div>
+        <div style={fourthLine}>{this.getMachineInfor()[0].name}</div>
+        <div style={fifthLine}>{this.getMachineInfor()[0].ip}</div>
         <div style={sixthLine}>
           <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
           <div style={user}>
