@@ -1,6 +1,7 @@
 import path from 'path'
 import express, { Router } from 'express'
 import bodyParser from 'body-parser'
+import deviceScan from '../lib/lib/device'
 
 let app = express()
 let router = Router()
@@ -17,6 +18,11 @@ router.get('/', (req, res, next) => {
 })
 
 app.use('/', router)
+
+deviceScan()
+console.log(global.test222)
+//global.test111 = deviceScan()
+//console.log(test111)
 
 app.listen(3000, () => {
   console.log('Listening at port 3000... ...')
