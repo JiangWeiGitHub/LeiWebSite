@@ -1,10 +1,12 @@
 import path from 'path'
 import express, { Router } from 'express'
 import bodyParser from 'body-parser'
-import deviceScan from '../lib/lib/device'
+import { getDeviceList } from '../lib/lib/device'
 
-let app = express()
-let router = Router()
+global.deviceList = []
+
+const app = express()
+const router = Router()
 
 app.use(bodyParser.json())
 app.use(bodyParser.urlencoded({extended: true}))
@@ -19,10 +21,7 @@ router.get('/', (req, res, next) => {
 
 app.use('/', router)
 
-deviceScan()
-console.log(global.test222)
-//global.test111 = deviceScan()
-//console.log(test111)
+getDeviceList(() => console.log(deviceList))
 
 app.listen(3000, () => {
   console.log('Listening at port 3000... ...')

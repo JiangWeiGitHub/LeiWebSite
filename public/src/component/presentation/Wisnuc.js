@@ -255,7 +255,6 @@ class Wisnuc extends React.Component {
   }
 
   render() {
-    //console.log(test111)
     return (
       <div style={wholeWisnuc}>
         <div style={firstLine}>
