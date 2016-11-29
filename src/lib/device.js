@@ -1,6 +1,6 @@
 import bonjour from 'bonjour'
 
-//let deviceList = []
+let deviceList = []
 
 const deviceScan = ( func ) => {
   bonjour().find({ type: 'http' }, (data) => {
@@ -16,7 +16,7 @@ const getBonjourDevice = ( data ) => {
 
 const getDeviceList = ( func ) => {
   deviceScan(getBonjourDevice)
-  setTimeout(func, 1000)
+  setTimeout(() => func(deviceList), 1000)
 }
 
 

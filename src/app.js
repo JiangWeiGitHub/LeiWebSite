@@ -3,8 +3,6 @@ import express, { Router } from 'express'
 import bodyParser from 'body-parser'
 import { getDeviceList } from '../lib/lib/device'
 
-global.deviceList = []
-
 const app = express()
 const router = Router()
 
@@ -21,7 +19,7 @@ router.get('/', (req, res, next) => {
 
 app.use('/', router)
 
-getDeviceList(() => console.log(deviceList))
+getDeviceList((deviceList) => { console.log(deviceList) })
 
 app.listen(3000, () => {
   console.log('Listening at port 3000... ...')

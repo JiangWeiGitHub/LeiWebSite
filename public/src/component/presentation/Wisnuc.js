@@ -223,6 +223,11 @@ const userButton = {
 class Wisnuc extends React.Component {
   constructor(props){
     super(props)
+    this.state = {
+      leftMachineButton: false,
+      rightMachineButton: false,
+      id: 0,
+    }
   }
 
   getMachineInfor () {
@@ -242,19 +247,79 @@ class Wisnuc extends React.Component {
           'Kate',
         ],
       },
-      {
-        name: 'Testing Machine No. 111',
-        ip: '192.168.5.110',
-        users: [
-          'Adam',
-          'Bob',
-          'Cody',
-        ],
-      },      
+      // {
+      //   name: 'Testing Machine No. 111',
+      //   ip: '192.168.5.110',
+      //   users: [
+      //     'Adam',
+      //     'Bob',
+      //     'Cody',
+      //   ],
+      // },      
     ]
   }
 
+  getStateAll () {
+    if(this.getMachineInfor().length < 1 || this.getMachineInfor().length === 1) {
+      this.state.leftMachineButton = false
+      this.state.rightMachineButton = false
+    }
+    else if(this.getMachineInfor().length > 1) {
+      this.state.leftMachineButton = true
+      this.state.rightMachineButton = true
+    }
+  }
+
+  idjian () {
+    this.state.id = this.state.id--
+  }
+
+  idjia () {
+    this.state.id = this.state.id++
+  }
+
+
+  machineInfor () {
+    if( this.state.leftMachineButton === false && this.state.rightMachineButton === false ) {
+      return (
+        <div style={thirdLine}>
+          <div style={preIcon}></div>
+          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+          <div style={nextIcon}></div>
+        </div>
+      )   
+    }
+    else if( this.state.leftMachineButton === true && this.state.rightMachineButton === false ) {
+      return (
+        <div style={thirdLine}>
+          <div style={preIcon}><IconButton onClick={this.idjian()}><PreIcon color={grey700} /></IconButton></div>
+          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+          <div style={nextIcon}></div>
+        </div>        
+      )
+    }
+    else if( this.state.leftMachineButton === true && this.state.rightMachineButton === true ) {
+      return (
+        <div style={thirdLine}>
+          <div style={preIcon}><IconButton onClick={this.idjian()}><PreIcon color={grey700} /></IconButton></div>
+          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+          <div style={nextIcon}><IconButton  onClick={this.idjia()}><NextIcon color={grey700} /></IconButton></div>
+        </div>        
+      )
+    }
+    else if( this.state.leftMachineButton === false && this.state.rightMachineButton === true ) {
+      return (
+        <div style={thirdLine}>
+          <div style={preIcon}></div>
+          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+          <div style={nextIcon}><IconButton  onClick={this.idjia()}><NextIcon color={grey700} /></IconButton></div>
+        </div>        
+      )
+    }
+  }
+
   render() {
+    {this.getStateAll()}
     return (
       <div style={wholeWisnuc}>
         <div style={firstLine}>
@@ -263,13 +328,9 @@ class Wisnuc extends React.Component {
           <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
         </div>
         <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
-        <div style={thirdLine}>
-          <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
-          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-          <div style={nextIcon}><IconButton><NextIcon color={grey700} /></IconButton></div>
-        </div>
-        <div style={fourthLine}>{this.getMachineInfor()[0].name}</div>
-        <div style={fifthLine}>{this.getMachineInfor()[0].ip}</div>
+          {this.machineInfor()}
+        <div style={fourthLine}>{this.getMachineInfor()[this.state.id].name}</div>
+        <div style={fifthLine}>{this.getMachineInfor()[this.state.id].ip}</div>
         <div style={sixthLine}>
           <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
           <div style={user}>
