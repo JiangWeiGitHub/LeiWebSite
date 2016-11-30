@@ -181,9 +181,40 @@ const sixthLine = {
   'align-items': 'flex-start',
 }
 
+const userWrapper = {
+  'height': '100%',
+  'width': '50%',
+  'overflow': 'hidden',
+}
+
+const usersMoreFive = {
+  'height': '100%',
+  'width': '100%',
+  'display': 'flex',
+  'align-items': 'center',
+  'justify-content': 'flex-start',
+  'flex-direction':'row',
+  'align-content': 'center',
+  'flex-wrap': 'nowrap',
+  'margin-left': '-200%',
+}
+
+const usersLessFive = {
+  'height': '100%',
+  'width': '50%',
+  'display': 'flex',
+  'align-items': 'center',
+  'justify-content': 'center',
+  'flex-direction':'row',
+  'align-content': 'center',
+  'flex-wrap': 'nowrap',
+  'overflow': 'hidden',
+}
+
 const user = {
   'height': '100%',
-  'width': '10%',
+  'width': '20%',
+  'margin': 'auto 9px',
   'display': 'flex',
   'align-items': 'center',
   'justify-content': 'center',
@@ -320,6 +351,7 @@ class Wisnuc extends React.Component {
 
   render() {
     {this.getStateAll()}
+    let moreFive = true
     return (
       <div style={wholeWisnuc}>
         <div style={firstLine}>
@@ -333,76 +365,180 @@ class Wisnuc extends React.Component {
         <div style={fifthLine}>{this.getMachineInfor()[this.state.id].ip}</div>
         <div style={sixthLine}>
           <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
-          <div style={user}>
-            <div style={userIcon}>
-              <IconButton style={userButton}>
-                <Avatar
-                  color={grey50}
-                  backgroundColor={randomColor()}
-                  size={40}
-                >
-                  A
-                </Avatar>
-              </IconButton>
+
+          <div style={userWrapper}>
+
+            <div style={moreFive ? usersMoreFive : usersLessFive}>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      A
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Alice</div>
+              </div>
+      
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      B
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Mike</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      C
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Tom</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      D
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Sean</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      E
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Cody</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      F
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Alice</div>
+              </div>
+      
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      G
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Mike</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      H
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Tom</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      I
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Sean</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      J
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Cody</div>
+              </div>
+
+              <div style={user}>
+                <div style={userIcon}>
+                  <IconButton style={userButton}>
+                    <Avatar
+                      color={grey50}
+                      backgroundColor={randomColor()}
+                      size={40}
+                    >
+                      K
+                    </Avatar>
+                  </IconButton>
+                </div>
+                <div style={userName}>Cody</div>
+              </div>
+              
             </div>
-            <div style={userName}>Alice</div>
+
           </div>
-          <div style={user}>
-            <div style={userIcon}>
-              <IconButton style={userButton}>
-                <Avatar
-                  color={grey50}
-                  backgroundColor={randomColor()}
-                  size={40}
-                >
-                  M
-                </Avatar>
-              </IconButton>
-            </div>
-            <div style={userName}>Mike</div>
-          </div>
-          <div style={user}>
-            <div style={userIcon}>
-              <IconButton style={userButton}>
-                <Avatar
-                  color={grey50}
-                  backgroundColor={randomColor()}
-                  size={40}
-                >
-                  T
-                </Avatar>
-              </IconButton>
-            </div>
-            <div style={userName}>Tom</div>
-          </div>
-          <div style={user}>
-            <div style={userIcon}>
-              <IconButton style={userButton}>
-                <Avatar
-                  color={grey50}
-                  backgroundColor={randomColor()}
-                  size={40}
-                >
-                  S
-                </Avatar>
-              </IconButton>
-            </div>
-            <div style={userName}>Sean</div>
-          </div>
-          <div style={user}>
-            <div style={userIcon}>
-              <IconButton style={userButton}>
-                <Avatar
-                  color={grey50}
-                  backgroundColor={randomColor()}
-                  size={40}
-                >
-                  C
-                </Avatar>
-              </IconButton>
-            </div>
-            <div style={userName}>Cody</div>
-          </div>
+
           <div style={nextIcon}><IconButton><NextIcon color={grey700} /></IconButton></div>
         </div>
       </div>
