@@ -309,6 +309,15 @@ class Wisnuc extends React.Component {
     this.state.id = this.state.id++
   }
 
+  testSock () {
+    let path = 'ws://192.168.5.166:8080/'
+        let websocket = new WebSocket(path, 'jiangwei-protocol'); 
+        websocket.onopen = () => { 
+          websocket.send("WebSocket rocks");
+          websocket.close(); 
+        }
+  }
+
 
   machineInfor () {
     if( this.state.leftMachineButton === false && this.state.rightMachineButton === false ) {
@@ -351,6 +360,7 @@ class Wisnuc extends React.Component {
 
   render() {
     {this.getStateAll()}
+    //testSock()
     let moreFive = true
     return (
       <div style={wholeWisnuc}>
@@ -364,7 +374,7 @@ class Wisnuc extends React.Component {
         <div style={fourthLine}>{this.getMachineInfor()[this.state.id].name}</div>
         <div style={fifthLine}>{this.getMachineInfor()[this.state.id].ip}</div>
         <div style={sixthLine}>
-          <div style={preIcon}><IconButton><PreIcon color={grey700} /></IconButton></div>
+          <div style={preIcon}><IconButton onClick={this.testSock}><PreIcon color={grey700} /></IconButton></div>
 
           <div style={userWrapper}>
 
