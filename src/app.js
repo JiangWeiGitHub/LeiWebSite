@@ -33,8 +33,6 @@ setTimeout( () => {
   store.dispatch(actions.updateSystemInfor(global.deviceList, global.userList))
 }, 2000)
 
-//setTimeout(() => {    console.log(store.getState().systemReducer.userList)}, 3000)
-
 WSServer()
 
 app.listen(3000, () => {

@@ -41,9 +41,9 @@ const runWSServer = () => {
     connection.on('message', (message) => {
       if (message.type === 'utf8') {
         console.log('Received Message: ' + message.utf8Data)
-
-        connection.sendUTF('socker hahaha')
-
+        if(message.utf8Data === 'getSystemInfor') {
+          connection.sendUTF(JSON.stringify(global.userList))
+        }
       }
       else if (message.type === 'binary') {
         console.log('Received Binary Message of ' + message.binaryData.length + ' bytes')

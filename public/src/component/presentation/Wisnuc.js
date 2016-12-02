@@ -12,7 +12,6 @@ import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
 
 import Skin from './Skin.js'
-import { getUserName } from '../../webSocket/getUserName'
 
 import {
   yellow200,
@@ -257,8 +256,16 @@ class Wisnuc extends React.Component {
     this.state = {
       leftMachineButton: false,
       rightMachineButton: false,
+      leftUserButton: false,
+      rightUserButton: false,
       id: 0,
+      // machineID: 0,
+      // userID: 0,
+      userList: {},
     }
+
+    this.socketClient = this.socketClient.bind(this)
+    this.dealSocketData = this.dealSocketData.bind(this)
   }
 
   getMachineInfor () {
@@ -309,15 +316,28 @@ class Wisnuc extends React.Component {
     this.state.id = this.state.id++
   }
 
-  testSock () {
-    let path = 'ws://192.168.5.166:8080/'
-        let websocket = new WebSocket(path, 'jiangwei-protocol'); 
-        websocket.onopen = () => { 
-          websocket.send("WebSocket rocks");
-          websocket.close(); 
-        }
+  socketClient () {
+    let path = 'ws://' + location.hostname + ':8080/'
+    let websocket = new WebSocket(path, 'jiangwei-protocol')
+    websocket.onopen = () => { 
+      websocket.send("getSystemInfor")
+    }
+
+    websocket.onmessage = (event) => {
+      this.state.userList = Object.assign({}, JSON.parse(event.data))
+    }
   }
 
+  initalMachine () {
+    if(Object.keys(this.state.userList).length <= 1) {
+      this.state.leftMachineButton = false
+      this.state.rightMachineButton = false
+    }
+    else {
+      this.state.leftMachineButton = false
+      this.state.rightMachineButton = true
+    }
+  }
 
   machineInfor () {
     if( this.state.leftMachineButton === false && this.state.rightMachineButton === false ) {
@@ -356,11 +376,42 @@ class Wisnuc extends React.Component {
         </div>        
       )
     }
+  }  
+
+  initialUserList (machineID) {
+    if(this.state.userList[machineID].users.length <= 5) {
+      this.state.leftUserButton = false
+      this.state.rightUserButton = false
+    }
+    else {
+      this.state.leftUserButton = false
+      this.state.rightUserButton = true
+    }    
+  }
+
+  userInfor(userList, machineID,userID) {
+    if ( this.state.leftUserButton === false && this.state.rightUserButton === false ) {
+      return (
+        <div style={user}>
+          <div style={userIcon}>
+            <IconButton style={userButton}>
+              <Avatar
+                color={grey50}
+                backgroundColor={randomColor()}
+                size={40}
+              >
+                A
+              </Avatar>
+            </IconButton>
+          </div>
+          <div style={userName}>userList[machineID].users[userID].username</div>
+        </div>      
+      )
+    }
   }
 
   render() {
     {this.getStateAll()}
-    //testSock()
     let moreFive = true
     return (
       <div style={wholeWisnuc}>
@@ -374,7 +425,7 @@ class Wisnuc extends React.Component {
         <div style={fourthLine}>{this.getMachineInfor()[this.state.id].name}</div>
         <div style={fifthLine}>{this.getMachineInfor()[this.state.id].ip}</div>
         <div style={sixthLine}>
-          <div style={preIcon}><IconButton onClick={this.testSock}><PreIcon color={grey700} /></IconButton></div>
+          <div style={preIcon}><IconButton onClick={this.socketClient}><PreIcon color={grey700} /></IconButton></div>
 
           <div style={userWrapper}>
 
@@ -549,7 +600,7 @@ class Wisnuc extends React.Component {
 
           </div>
 
-          <div style={nextIcon}><IconButton><NextIcon color={grey700} /></IconButton></div>
+          <div style={nextIcon}><IconButton onClick={this.dealSocketData}><NextIcon color={grey700} /></IconButton></div>
         </div>
       </div>
     )
