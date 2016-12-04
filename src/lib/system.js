@@ -11,6 +11,7 @@ const beforeUsing = () => {
 				let tmp = {}
 				tmp.ip = rawUserData.referer.address
 				tmp.users = data
+				tmp.host = rawUserData.host
 				global.userList.push(tmp)
 			})
 		}) 

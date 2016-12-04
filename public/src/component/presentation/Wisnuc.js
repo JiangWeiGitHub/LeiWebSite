@@ -254,69 +254,87 @@ class Wisnuc extends React.Component {
   constructor(props){
     super(props)
     this.state = {
+      delay: true,
       leftMachineButton: false,
       rightMachineButton: false,
       leftUserButton: false,
       rightUserButton: false,
-      id: 0,
-      // machineID: 0,
-      // userID: 0,
-      userList: {},
+      machineID: 0,
+      userID: 0,
     }
 
-    this.socketClient = this.socketClient.bind(this)
-    this.dealSocketData = this.dealSocketData.bind(this)
+    this.userList = {}
+
+    this.initalAllElements = this.initalAllElements.bind(this)
+    this.machineIDSub = this.machineIDSub.bind(this)
+    this.machineIDPlus = this.machineIDPlus.bind(this)
+    this.userIDSub = this.userIDSub.bind(this)
+    this.userIDPlus = this.userIDPlus.bind(this)
+
+    this.showUserList = this.showUserList.bind(this)
   }
 
-  getMachineInfor () {
-    return [
-      {
-        name: 'Testing Machine No. 110',
-        ip: '192.168.5.100',
-        users: [
-          'Jerry',
-          'Tom',
-          'John',
-          'Grace',
-          'Emma',
-          'Lucy',
-          'Lily',
-          'Jan',
-          'Kate',
-        ],
-      },
-      // {
-      //   name: 'Testing Machine No. 111',
-      //   ip: '192.168.5.110',
-      //   users: [
-      //     'Adam',
-      //     'Bob',
-      //     'Cody',
-      //   ],
-      // },      
-    ]
-  }
-
-  getStateAll () {
-    if(this.getMachineInfor().length < 1 || this.getMachineInfor().length === 1) {
+  initalAllElements () {
+    if(this.userList && Object.keys(this.userList).length <= 1) {
       this.state.leftMachineButton = false
       this.state.rightMachineButton = false
     }
-    else if(this.getMachineInfor().length > 1) {
+    else if(this.userList && Object.keys(this.userList).length > 1 && this.state.machineID === 0) {
+      this.state.leftMachineButton = false
+      this.state.rightMachineButton = true
+    }
+    else if(this.userList && Object.keys(this.userList).length > 1 && this.state.machineID > 0 && this.state.machineID != Object.keys(this.userList).length - 1) {
       this.state.leftMachineButton = true
       this.state.rightMachineButton = true
     }
+    else if(this.userList && Object.keys(this.userList).length > 1 && this.state.machineID === Object.keys(this.userList).length - 1) {
+      this.state.leftMachineButton = true
+      this.state.rightMachineButton = false
+    }
+
+    if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length <= 5) {
+      this.state.leftUserButton = false
+      this.state.rightUserButton = false
+    }
+    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && this.state.userID === 0) {
+      this.state.leftUserButton = false
+      this.state.rightUserButton = true
+    }
+    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && Math.floor(this.state.userID/5) < Math.floor(this.userList[this.state.machineID].users.length/5) ) {
+      this.state.leftMachineButton = true
+      this.state.rightMachineButton = true
+    }
+    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && Math.floor(this.state.userID/5) >= Math.floor(this.userList[this.state.machineID].users.length/5) ) {
+      this.state.leftUserButton = true
+      this.state.rightUserButton = false        
+    }
+  }  
+
+  machineIDSub () {
+    setTimeout(() => {
+      this.setState({machineID: this.state.machineID - 1})
+    }, 250)
   }
 
-  idjian () {
-    this.state.id = this.state.id--
+  machineIDPlus () {
+    setTimeout(() => {
+      this.setState({machineID: this.state.machineID + 1})
+    }, 250)
   }
 
-  idjia () {
-    this.state.id = this.state.id++
+  userIDSub () {
+    setTimeout(() => {
+      this.setState({userID: this.state.userID - 1})
+    }, 250)
   }
 
-  socketClient () {
+  userIDPlus () {
+    setTimeout(() => {
+      this.setState({userID: this.state.userID + 1})
+    }, 250)
+  }  
+
+  componentWillMount () {
     let path = 'ws://' + location.hostname + ':8080/'
     let websocket = new WebSocket(path, 'jiangwei-protocol')
     websocket.onopen = () => { 
@@ -324,73 +342,109 @@ class Wisnuc extends React.Component {
     }
 
     websocket.onmessage = (event) => {
-      this.state.userList = Object.assign({}, JSON.parse(event.data))
+      this.userList = Object.assign({}, JSON.parse(event.data))
     }
   }
 
-  initalMachine () {
-    if(Object.keys(this.state.userList).length <= 1) {
-      this.state.leftMachineButton = false
-      this.state.rightMachineButton = false
-    }
-    else {
-      this.state.leftMachineButton = false
-      this.state.rightMachineButton = true
-    }
+  componentDidMount () {
+    setTimeout(() => {
+      this.setState({delay: false})}, 1000) 
   }
 
-  machineInfor () {
+  preMachineButton () {
     if( this.state.leftMachineButton === false && this.state.rightMachineButton === false ) {
       return (
-        <div style={thirdLine}>
-          <div style={preIcon}></div>
-          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-          <div style={nextIcon}></div>
-        </div>
+        <div style={preIcon}></div>
       )   
     }
     else if( this.state.leftMachineButton === true && this.state.rightMachineButton === false ) {
       return (
-        <div style={thirdLine}>
-          <div style={preIcon}><IconButton onClick={this.idjian()}><PreIcon color={grey700} /></IconButton></div>
-          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-          <div style={nextIcon}></div>
-        </div>        
+        <div style={preIcon}><IconButton onClick={this.machineIDSub}><PreIcon color={grey700} /></IconButton></div>
       )
     }
     else if( this.state.leftMachineButton === true && this.state.rightMachineButton === true ) {
       return (
-        <div style={thirdLine}>
-          <div style={preIcon}><IconButton onClick={this.idjian()}><PreIcon color={grey700} /></IconButton></div>
-          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-          <div style={nextIcon}><IconButton  onClick={this.idjia()}><NextIcon color={grey700} /></IconButton></div>
-        </div>        
+        <div style={preIcon}><IconButton onClick={this.machineIDSub}><PreIcon color={grey700} /></IconButton></div>    
       )
     }
     else if( this.state.leftMachineButton === false && this.state.rightMachineButton === true ) {
       return (
-        <div style={thirdLine}>
-          <div style={preIcon}></div>
-          <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-          <div style={nextIcon}><IconButton  onClick={this.idjia()}><NextIcon color={grey700} /></IconButton></div>
-        </div>        
+        <div style={preIcon}></div>       
       )
     }
-  }  
-
-  initialUserList (machineID) {
-    if(this.state.userList[machineID].users.length <= 5) {
-      this.state.leftUserButton = false
-      this.state.rightUserButton = false
-    }
-    else {
-      this.state.leftUserButton = false
-      this.state.rightUserButton = true
-    }    
   }
 
-  userInfor(userList, machineID,userID) {
-    if ( this.state.leftUserButton === false && this.state.rightUserButton === false ) {
+  nextMachineButton () {
+    if( this.state.leftMachineButton === false && this.state.rightMachineButton === false ) {
+      return (
+        <div style={nextIcon}></div>
+      )   
+    }
+    else if( this.state.leftMachineButton === true && this.state.rightMachineButton === false ) {
+      return (
+        <div style={nextIcon}></div>
+      )
+    }
+    else if( this.state.leftMachineButton === true && this.state.rightMachineButton === true ) {
+      return (
+        <div style={nextIcon}><IconButton onClick={this.machineIDPlus}><NextIcon color={grey700} /></IconButton></div>
+      )
+    }
+    else if( this.state.leftMachineButton === false && this.state.rightMachineButton === true ) {
+      return (
+        <div style={nextIcon}><IconButton onClick={this.machineIDPlus}><NextIcon color={grey700} /></IconButton></div>
+      )
+    }
+  }
+
+  preUserButton () {
+    if( this.state.leftUserButton === false && this.state.rightUserButton === false ) {
+      return (
+        <div style={preIcon}></div>
+      )   
+    }
+    else if( this.state.leftUserButton === true && this.state.rightUserButton === false ) {
+      return (
+        <div style={preIcon}><IconButton onClick={this.userIDSub}><PreIcon color={grey700} /></IconButton></div>
+      )
+    }
+    else if( this.state.leftUserButton === true && this.state.rightUserButton === true ) {
+      return (
+        <div style={preIcon}><IconButton onClick={this.userIDSub}><PreIcon color={grey700} /></IconButton></div>    
+      )
+    }
+    else if( this.state.leftUserButton === false && this.state.rightUserButton === true ) {
+      return (
+        <div style={preIcon}></div>       
+      )
+    }
+  }
+
+  nextUserButton () {
+    if( this.state.leftUserButton === false && this.state.rightUserButton === false ) {
+      return (
+        <div style={nextIcon}></div>
+      )   
+    }
+    else if( this.state.leftUserButton === true && this.state.rightUserButton === false ) {
+      return (
+        <div style={nextIcon}></div>
+      )
+    }
+    else if( this.state.leftUserButton === true && this.state.rightUserButton === true ) {
+      return (
+        <div style={nextIcon}><IconButton onClick={this.userIDPlus}><NextIcon color={grey700} /></IconButton></div>
+      )
+    }
+    else if( this.state.leftUserButton === false && this.state.rightUserButton === true ) {
+      return (
+        <div style={nextIcon}><IconButton onClick={this.userIDPlus}><NextIcon color={grey700} /></IconButton></div>
+      )
+    }
+  }
+
+  showUserList() {
+    return this.userList[this.state.machineID].users.map( (userContents) => {
       return (
         <div style={user}>
           <div style={userIcon}>
@@ -404,206 +458,68 @@ class Wisnuc extends React.Component {
               </Avatar>
             </IconButton>
           </div>
-          <div style={userName}>userList[machineID].users[userID].username</div>
-        </div>      
+          <div style={userName}>{userContents.username}</div>
+        </div>
       )
-    }
+    })
   }
 
   render() {
-    {this.getStateAll()}
-    let moreFive = true
-    return (
-      <div style={wholeWisnuc}>
-        <div style={firstLine}>
-          <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
-          <div style={login}>Login</div>
-          <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
-        </div>
-        <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
-          {this.machineInfor()}
-        <div style={fourthLine}>{this.getMachineInfor()[this.state.id].name}</div>
-        <div style={fifthLine}>{this.getMachineInfor()[this.state.id].ip}</div>
-        <div style={sixthLine}>
-          <div style={preIcon}><IconButton onClick={this.socketClient}><PreIcon color={grey700} /></IconButton></div>
 
-          <div style={userWrapper}>
+    {this.initalAllElements()}
 
-            <div style={moreFive ? usersMoreFive : usersLessFive}>
+    if ( this.state.delay === true ) {
+      return (<div />)
+    }
+    else {
+      let moreFive = false
+      return (
+        <div style={wholeWisnuc}>
+          <div style={firstLine}>
+            <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
+            <div style={login}>Login</div>
+            <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
+          </div>
+          <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
+          <div style={thirdLine}>
+            {this.preMachineButton()}
+            <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+            {this.nextMachineButton()}
+          </div>  
+          <div style={fourthLine}>{this.userList[this.state.machineID].host}</div>
+          <div style={fifthLine}>{this.userList[this.state.machineID].ip}</div>
+          <div style={sixthLine}>
+            {this.preUserButton()}
 
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      A
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Alice</div>
-              </div>
-      
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      B
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Mike</div>
+            <div style={userWrapper}>
+
+              <div style={moreFive ? usersMoreFive : usersLessFive}>
+
+                {
+                  // // for(let i = 0; i < this.userList[this.state.machineID].user.length; i ++) {
+
+                  // // }
+                  // // console.log(this.userList[this.state.machineID].users)
+                  // // console.log(this)
+                  // this.userList[this.state.machineID].users.forEach((userContent) => {
+                  //   // console.log(userContent.username)
+                  //   this.showUserList(userContent.username)
+                  // })
+                  this.showUserList()
+                }
+
+                
               </div>
 
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      C
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Tom</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      D
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Sean</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      E
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Cody</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      F
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Alice</div>
-              </div>
-      
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      G
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Mike</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      H
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Tom</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      I
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Sean</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      J
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Cody</div>
-              </div>
-
-              <div style={user}>
-                <div style={userIcon}>
-                  <IconButton style={userButton}>
-                    <Avatar
-                      color={grey50}
-                      backgroundColor={randomColor()}
-                      size={40}
-                    >
-                      K
-                    </Avatar>
-                  </IconButton>
-                </div>
-                <div style={userName}>Cody</div>
-              </div>
-              
             </div>
 
+            {this.nextUserButton()}
           </div>
-
-          <div style={nextIcon}><IconButton onClick={this.dealSocketData}><NextIcon color={grey700} /></IconButton></div>
         </div>
-      </div>
-    )
+      )      
+    }
+
+
   }
 }
 
