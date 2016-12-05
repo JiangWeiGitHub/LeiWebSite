@@ -10,6 +10,7 @@ import ListItem from 'material-ui/List/ListItem'
 
 import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
+import CircularProgress from 'material-ui/CircularProgress'
 
 import Skin from './Skin.js'
 
@@ -272,6 +273,7 @@ class Wisnuc extends React.Component {
     this.userIDPlus = this.userIDPlus.bind(this)
 
     this.showUserList = this.showUserList.bind(this)
+    this.setCSS = this.setCSS.bind(this)
   }
 
   initalAllElements () {
@@ -300,11 +302,11 @@ class Wisnuc extends React.Component {
       this.state.leftUserButton = false
       this.state.rightUserButton = true
     }
-    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && Math.floor(this.state.userID/5) < Math.floor(this.userList[this.state.machineID].users.length/5) ) {
+    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && this.state.userID < Math.floor(this.userList[this.state.machineID].users.length/5) ) {
       this.state.leftMachineButton = true
       this.state.rightMachineButton = true
     }
-    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && Math.floor(this.state.userID/5) >= Math.floor(this.userList[this.state.machineID].users.length/5) ) {
+    else if(this.userList[this.state.machineID] && this.userList[this.state.machineID].users.length > 5 && this.state.userID >= Math.floor(this.userList[this.state.machineID].users.length/5) ) {
       this.state.leftUserButton = true
       this.state.rightUserButton = false        
     }
@@ -312,13 +314,13 @@ class Wisnuc extends React.Component {
 
   machineIDSub () {
     setTimeout(() => {
-      this.setState({machineID: this.state.machineID - 1})
+      this.setState({machineID: this.state.machineID - 1, userID: 0})
     }, 250)
   }
 
   machineIDPlus () {
     setTimeout(() => {
-      this.setState({machineID: this.state.machineID + 1})
+      this.setState({machineID: this.state.machineID + 1, userID: 0})
     }, 250)
   }
 
@@ -348,7 +350,7 @@ class Wisnuc extends React.Component {
 
   componentDidMount () {
     setTimeout(() => {
-      this.setState({delay: false})}, 1000) 
+      this.setState({delay: false})}, 2000) 
   }
 
   preMachineButton () {
@@ -454,7 +456,7 @@ class Wisnuc extends React.Component {
                 backgroundColor={randomColor()}
                 size={40}
               >
-                A
+                {userContents.username.slice(0,1).toLocaleUpperCase()}
               </Avatar>
             </IconButton>
           </div>
@@ -464,15 +466,50 @@ class Wisnuc extends React.Component {
     })
   }
 
+  setCSS() {
+    if(this.userList[this.state.machineID].users.length < 5) {
+      return {
+        'height': '100%',
+        'width': '100%',
+        'display': 'flex',
+        'align-items': 'center',
+        'justify-content': 'center',
+        // 'flex-direction':'row',
+        'align-content': 'center',
+        // 'flex-wrap': 'nowrap',
+        // 'overflow': 'hidden',
+        // 'backgroundColor':'#143134'
+      }
+    }
+    else {
+      return {
+        'height': '100%',
+        'width': '100%',
+        'display': 'flex',
+        'align-items': 'center',
+        'justify-content': 'flex-start',
+        'flex-direction':'row',
+        'align-content': 'center',
+        'flex-wrap': 'nowrap',
+        'margin-left': '-' + this.state.userID * 100 + '%',
+      }
+    }
+  }
+
   render() {
 
     {this.initalAllElements()}
 
     if ( this.state.delay === true ) {
-      return (<div />)
+      return (
+        <div style={wholeWisnuc}>
+          <div style={{'margin-bottom':50,'fontSize':26}}>Retrieving data...</div>
+          <CircularProgress size={80} thickness={8} />
+        </div>        
+      )
     }
     else {
-      let moreFive = false
+      // let moreFive = false
       return (
         <div style={wholeWisnuc}>
           <div style={firstLine}>
@@ -493,22 +530,10 @@ class Wisnuc extends React.Component {
 
             <div style={userWrapper}>
 
-              <div style={moreFive ? usersMoreFive : usersLessFive}>
-
+              <div style={this.setCSS()}>
                 {
-                  // // for(let i = 0; i < this.userList[this.state.machineID].user.length; i ++) {
-
-                  // // }
-                  // // console.log(this.userList[this.state.machineID].users)
-                  // // console.log(this)
-                  // this.userList[this.state.machineID].users.forEach((userContent) => {
-                  //   // console.log(userContent.username)
-                  //   this.showUserList(userContent.username)
-                  // })
                   this.showUserList()
-                }
-
-                
+                }                
               </div>
 
             </div>
