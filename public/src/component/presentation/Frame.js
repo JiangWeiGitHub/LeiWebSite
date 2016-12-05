@@ -2,6 +2,8 @@ import React from 'react'
 import { render } from 'react-dom'
 import ReactDOM from 'react-dom'
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import {deepOrange500} from 'material-ui/styles/colors'
@@ -38,10 +40,19 @@ class Frame extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-          <Paper style={style} zDepth={2}>
-            <Wisnuc />
-            <DrawerSkin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
-          </Paper>
+        {console.log(this)}
+          <ReactCSSTransitionGroup
+              transitionName="wisnuc"
+              transitionAppear={true}
+              transitionAppearTimeout={1000}
+              transitionEnter={500}
+              transitionLeave={300}>
+            <Paper style={style} zDepth={5}>
+              <Wisnuc isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />              
+            </Paper>
+          </ReactCSSTransitionGroup>
+
+          <DrawerSkin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
         </div>
       </MuiThemeProvider>
     )

@@ -94,6 +94,7 @@ class DrawerSkin extends React.Component {
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
+        {console.log(this)}
           <Drawer width={250} openSecondary={true} open={isOpen} >
             <div style={styles.root}>
               <GridList

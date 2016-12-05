@@ -315,25 +315,25 @@ class Wisnuc extends React.Component {
   machineIDSub () {
     setTimeout(() => {
       this.setState({machineID: this.state.machineID - 1, userID: 0})
-    }, 250)
+    }, 200)
   }
 
   machineIDPlus () {
     setTimeout(() => {
       this.setState({machineID: this.state.machineID + 1, userID: 0})
-    }, 250)
+    }, 200)
   }
 
   userIDSub () {
     setTimeout(() => {
       this.setState({userID: this.state.userID - 1})
-    }, 250)
+    }, 200)
   }
 
   userIDPlus () {
     setTimeout(() => {
       this.setState({userID: this.state.userID + 1})
-    }, 250)
+    }, 200)
   }  
 
   componentWillMount () {
@@ -474,11 +474,7 @@ class Wisnuc extends React.Component {
         'display': 'flex',
         'align-items': 'center',
         'justify-content': 'center',
-        // 'flex-direction':'row',
         'align-content': 'center',
-        // 'flex-wrap': 'nowrap',
-        // 'overflow': 'hidden',
-        // 'backgroundColor':'#143134'
       }
     }
     else {
@@ -503,13 +499,29 @@ class Wisnuc extends React.Component {
     if ( this.state.delay === true ) {
       return (
         <div style={wholeWisnuc}>
-          <div style={{'margin-bottom':50,'fontSize':26}}>Retrieving data...</div>
-          <CircularProgress size={80} thickness={8} />
-        </div>        
-      )
+        {console.log(this)}
+          <div style={firstLine}>
+            <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
+            <div style={login}>Login</div>
+            <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
+          </div>
+          <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
+          <div style={thirdLine}>
+
+            <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+
+          </div>  
+          <div style={fourthLine}>Retrieving data...</div>
+          <div style={fifthLine}>Please wait a moment.</div>
+          <div style={sixthLine}>
+            <div style={wholeWisnuc}>
+              <CircularProgress size={50} thickness={4} />
+            </div>
+          </div>
+        </div>
+      )    
     }
     else {
-      // let moreFive = false
       return (
         <div style={wholeWisnuc}>
           <div style={firstLine}>

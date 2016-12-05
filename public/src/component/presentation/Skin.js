@@ -3,14 +3,10 @@ import { render } from 'react-dom'
 import ReactDom from 'react-dom'
 
 import FontIcon from 'material-ui/FontIcon'
+import IconMenu from 'material-ui/IconMenu'
+import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
-import ActionHome from 'material-ui/svg-icons/action/home'
-
-const style = {
-  'position': 'absolute',
-  'top': 20,
-  'right': 40
-}
+import MenuButton from 'material-ui/svg-icons/navigation/menu'
 
 class Skin extends React.Component {
   constructor(props) {
@@ -23,16 +19,13 @@ class Skin extends React.Component {
 
     return (
       <div>
-        <IconButton tooltip="Change Skin" onClick={ switchOpenSkin }>
-          <ActionHome />
-        </IconButton>
+      <IconButton>
+        <MenuButton onClick={ switchOpenSkin } />
+        {console.log(this)}
+      </IconButton>
       </div>
     )
   }
 }
-
-//Skin.propTypes = {
-//  switchOpenSkin: PropTypes.func.isRequired,
-//}
 
 export default Skin

@@ -4,7 +4,7 @@ const defaultState = {
 }
 */
 
-const FrameState = (state = { isOpen: false }, action) => {
+const FrameState = (state = { isOpen: true }, action) => {
   switch (action.type) {
     case 'SHOW_SKIN':
       return {isopen: true}
