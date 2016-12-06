@@ -21,7 +21,7 @@ const actionSet = {
   onChecked: () => {
     return {
       type: 'SKIN_CHECKED',
-      url
+      bgPath
     }
   },
 

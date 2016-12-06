@@ -95,7 +95,7 @@ class DrawerSkin extends React.Component {
   }  
 
   render() {
-    const {isOpen} = this.props
+    const {isOpen, onChecked, isChecked} = this.props
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
@@ -111,7 +111,6 @@ class DrawerSkin extends React.Component {
                   <GridTile
                     key={tile.img}
                     title={tile.title}
-                    //actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
                     actionIcon={
                       <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
                         <Checkbox
@@ -119,7 +118,8 @@ class DrawerSkin extends React.Component {
                         checkedIcon={<ActionFavorite />}
                         uncheckedIcon={<ActionFavoriteBorder />}
                         defaultChecked={tile.isChecked}
-
+                        onCheck={onChecked}
+                        checked={isChecked}
                         />
                       </MuiThemeProvider>}
                     actionPosition="left"
