@@ -6,7 +6,7 @@ import FontIcon from 'material-ui/FontIcon'
 import IconMenu from 'material-ui/IconMenu'
 import MenuItem from 'material-ui/MenuItem'
 import IconButton from 'material-ui/IconButton'
-import MenuButton from 'material-ui/svg-icons/navigation/menu'
+import Menu from 'material-ui/svg-icons/navigation/menu'
 
 class Skin extends React.Component {
   constructor(props) {
@@ -15,14 +15,13 @@ class Skin extends React.Component {
 
   render() {
 
-    const { isOpen, switchOpenSkin } = this.props
+    const { switchOpenSkin } = this.props
 
     return (
       <div>
-      <IconButton>
-        <MenuButton onClick={ switchOpenSkin } />
-        {console.log(this)}
-      </IconButton>
+        <IconButton onClick={ switchOpenSkin }>
+          <Menu />
+        </IconButton>
       </div>
     )
   }

@@ -6,8 +6,8 @@ import SkinState from './Skin.js'
 
 const reducerRoot = combineReducers({
   DrawerSkinState,
-  FrameState,
-  SkinState,
+  // FrameState,
+  // SkinState,
 })
 
 export default reducerRoot

@@ -10,9 +10,9 @@ import {deepOrange500} from 'material-ui/styles/colors'
 
 import Paper from 'material-ui/Paper'
 
-import Skin from './Skin.js'
+import Skin from '../containers/Skin.js'
 import Wisnuc from './Wisnuc.js'
-import DrawerSkin from './DrawerSkin.js'
+import DrawerSkin from '../containers/DrawerSkin.js'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -35,12 +35,11 @@ class Frame extends React.Component {
 
   render() {
 
-    const { isOpen, switchOpenSkin } = this.props
+    // const { isOpen, switchOpenSkin } = this.props
 
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-        {console.log(this)}
           <ReactCSSTransitionGroup
               transitionName="wisnuc"
               transitionAppear={true}
@@ -48,11 +47,11 @@ class Frame extends React.Component {
               transitionEnter={500}
               transitionLeave={300}>
             <Paper style={style} zDepth={5}>
-              <Wisnuc isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />              
+              <Wisnuc />              
             </Paper>
           </ReactCSSTransitionGroup>
 
-          <DrawerSkin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} />
+          <DrawerSkin />
         </div>
       </MuiThemeProvider>
     )

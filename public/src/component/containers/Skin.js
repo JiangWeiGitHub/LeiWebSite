@@ -3,11 +3,11 @@ import { connect } from 'react-redux'
 import ActionSet from '../../actions/actionSet.js'
 import SkinComponent from '../presentation/Skin.js'
 
-const mapStateToProps = (state) => {
-  return {
-    isOpen: state.isOpen
-  }
-}
+// const mapStateToProps = (state) => {
+//   return {
+//     isOpen: state.isOpen
+//   }
+// }
 
 const mapDispatchToProps = (dispatch) => {
   return {
@@ -16,7 +16,8 @@ const mapDispatchToProps = (dispatch) => {
 }
 
 const Skin = connect(
-  mapStateToProps,
+  // mapStateToProps,
+  () => {},
   mapDispatchToProps
 )(SkinComponent)
 

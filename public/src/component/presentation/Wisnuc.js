@@ -12,7 +12,7 @@ import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
 import CircularProgress from 'material-ui/CircularProgress'
 
-import Skin from './Skin.js'
+import Skin from '../containers/Skin.js'
 
 import {
   yellow200,
@@ -499,11 +499,10 @@ class Wisnuc extends React.Component {
     if ( this.state.delay === true ) {
       return (
         <div style={wholeWisnuc}>
-        {console.log(this)}
           <div style={firstLine}>
             <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
             <div style={login}>Login</div>
-            <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
+            <div style={skin}><Skin /></div>
           </div>
           <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
           <div style={thirdLine}>
@@ -527,7 +526,7 @@ class Wisnuc extends React.Component {
           <div style={firstLine}>
             <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
             <div style={login}>Login</div>
-            <div style={skin}><Skin isOpen={this.props.isOpen} switchOpenSkin={this.props.switchOpenSkin} /></div>
+            <div style={skin}><Skin /></div>
           </div>
           <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
           <div style={thirdLine}>

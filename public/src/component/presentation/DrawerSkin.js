@@ -89,12 +89,16 @@ class DrawerSkin extends React.Component {
     super(props)
   }
 
+  dealTilesData () {
+    let tmp = tilesData.concat()
+    return tmp
+  }  
+
   render() {
-    const {isOpen, isChecked, onChecked} = this.props
+    const {isOpen} = this.props
     return (
       <MuiThemeProvider muiTheme={muiTheme}>
         <div>
-        {console.log(this)}
           <Drawer width={250} openSecondary={true} open={isOpen} >
             <div style={styles.root}>
               <GridList
@@ -103,12 +107,21 @@ class DrawerSkin extends React.Component {
                 padding={1}
                 style={styles.gridList}
               >
-                {tilesData.map((tile) => (
+                {this.dealTilesData().map((tile) => (
                   <GridTile
                     key={tile.img}
                     title={tile.title}
                     //actionIcon={<IconButton><StarBorder color="white" /></IconButton>}
-                    actionIcon={<MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}><Checkbox checkedIcon={<ActionFavorite />} uncheckedIcon={<ActionFavoriteBorder />} defaultChecked={tile.isChecked} onCheck={onChecked}/></MuiThemeProvider>}
+                    actionIcon={
+                      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
+                        <Checkbox
+                        style={{'margin-left':10,}}
+                        checkedIcon={<ActionFavorite />}
+                        uncheckedIcon={<ActionFavoriteBorder />}
+                        defaultChecked={tile.isChecked}
+
+                        />
+                      </MuiThemeProvider>}
                     actionPosition="left"
                     titlePosition="top"
                     titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 60%,rgba(0,0,0,0) 100%)"

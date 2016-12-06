@@ -7,7 +7,7 @@ import reducerRoot from './reducers/ReducerRoot.js'
 import SkinState from './reducers/Skin.js'
 import ContainerRoot from './component/containers/ContainerRoot.js'
 
-const store = createStore(SkinState)
+const store = createStore(reducerRoot)
 
 global.store = store
 
