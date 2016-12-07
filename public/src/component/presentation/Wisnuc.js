@@ -159,7 +159,7 @@ const fourthLine = {
   'top': '60%',
   'height': '8%',
 
-  'font-size': '17px',
+  'font-size': '19px',
   'font-weight': 'bolder',
 }
 
@@ -263,6 +263,8 @@ class Wisnuc extends React.Component {
       machineID: 0,
       userID: 0,
     }
+
+    this.userColorList = {}
 
     this.userList = {}
 
@@ -446,21 +448,22 @@ class Wisnuc extends React.Component {
   }
 
   showUserList() {
-    return this.userList[this.state.machineID].users.map( (userContents) => {
+    return this.userList[this.state.machineID].users.map( (currentValue, index) => {
       return (
         <div style={user}>
           <div style={userIcon}>
             <IconButton style={userButton}>
               <Avatar
                 color={grey50}
-                backgroundColor={randomColor()}
+                // backgroundColor={randomColor()}
+                backgroundColor={colorArray[index + 2]}
                 size={40}
               >
-                {userContents.username.slice(0,1).toLocaleUpperCase()}
+                {currentValue.username.slice(0,1).toLocaleUpperCase()}
               </Avatar>
             </IconButton>
           </div>
-          <div style={userName}>{userContents.username}</div>
+          <div style={userName}>{currentValue.username}</div>
         </div>
       )
     })
@@ -488,6 +491,7 @@ class Wisnuc extends React.Component {
         'align-content': 'center',
         'flex-wrap': 'nowrap',
         'margin-left': '-' + this.state.userID * 100 + '%',
+        'transition': 'margin-left 800ms ease-in-out',
       }
     }
   }
@@ -534,7 +538,7 @@ class Wisnuc extends React.Component {
             <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
             {this.nextMachineButton()}
           </div>  
-          <div style={fourthLine}>{this.userList[this.state.machineID].host}</div>
+          <div style={fourthLine}>{this.userList[this.state.machineID].host.toLocaleUpperCase()}</div>
           <div style={fifthLine}>{this.userList[this.state.machineID].ip}</div>
           <div style={sixthLine}>
             {this.preUserButton()}
