@@ -45,3 +45,25 @@ body {
   opacity: 1;
   transition: opacity 2000ms ease-in-out;
 }
+
+.host-in-appear {
+  opacity: 0.01;
+  transform: scale(0.9, 0.9);
+}
+
+.host-in-appear.host-in-appear-active {
+  opacity: 1;
+  transform: scale(1, 1);
+  transition: opacity 2000ms ease-in-out, transform 2000ms ease-in-out;
+}
+
+.ip-in-appear {
+  opacity: 0.01;
+  transform: scale(0.9, 0.9);
+}
+
+.ip-in-appear.ip-in-appear-active {
+  opacity: 1;
+  transform: scale(1, 1);
+  transition: opacity 2000ms ease-in-out, transform 2000ms ease-in-out;
+}

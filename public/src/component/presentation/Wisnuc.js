@@ -161,7 +161,7 @@ const fourthLine = {
   'top': '60%',
   'height': '8%',
 
-  'font-size': '19px',
+  'font-size': '18px',
   'font-weight': 'bolder',
 }
 
@@ -319,25 +319,29 @@ class Wisnuc extends React.Component {
   machineIDSub () {
     setTimeout(() => {
       this.setState({machineID: this.state.machineID - 1, userID: 0})
-    }, 200)
+    }, 400)
   }
 
   machineIDPlus () {
+
+fourthLine.opacity = 1
+fourthLine.transition = 'opacity 800ms ease-in-out'
+
     setTimeout(() => {
       this.setState({machineID: this.state.machineID + 1, userID: 0})
-    }, 200)
+    }, 400)
   }
 
   userIDSub () {
     setTimeout(() => {
       this.setState({userID: this.state.userID - 1})
-    }, 200)
+    }, 400)
   }
 
   userIDPlus () {
     setTimeout(() => {
       this.setState({userID: this.state.userID + 1})
-    }, 200)
+    }, 400)
   }  
 
   componentWillMount () {
@@ -534,11 +538,11 @@ class Wisnuc extends React.Component {
       return (
 
         <ReactCSSTransitionGroup
-            transitionName="state-in"
-            transitionAppear={true}
-            transitionAppearTimeout={2000}
-            transitionEnter={false}
-            transitionLeave={false}>
+          transitionName="state-in"
+          transitionAppear={true}
+          transitionAppearTimeout={2000}
+          transitionEnter={false}
+          transitionLeave={false}>
 
           <div style={wholeWisnuc}>
 
@@ -552,9 +556,32 @@ class Wisnuc extends React.Component {
               {this.preMachineButton()}
               <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
               {this.nextMachineButton()}
-            </div>  
-            <div style={fourthLine}>{this.userList[this.state.machineID].host.toLocaleUpperCase()}</div>
-            <div style={fifthLine}>{this.userList[this.state.machineID].ip}</div>
+            </div>
+
+            <ReactCSSTransitionGroup
+              transitionName="host-in"
+              transitionAppear={true}
+              transitionAppearTimeout={2000}
+              transitionEnter={false}
+              transitionLeave={false}
+              style={fourthLine}>
+
+              <div>{this.userList[this.state.machineID].host.toLocaleUpperCase()}</div>
+
+            </ReactCSSTransitionGroup>
+
+            <ReactCSSTransitionGroup
+              transitionName="host-in"
+              transitionAppear={true}
+              transitionAppearTimeout={2000}
+              transitionEnter={false}
+              transitionLeave={false}
+              style={fifthLine}>            
+
+            <div>{this.userList[this.state.machineID].ip}</div>
+
+            </ReactCSSTransitionGroup>
+
             <div style={sixthLine}>
               {this.preUserButton()}
 
