@@ -26,6 +26,7 @@ const style = {
   'margin': 'auto auto',
   'textAlign': 'center',
   'position': 'relative',
+  'opacity': 0.90,
 }
 
 class Frame extends React.Component {
@@ -44,8 +45,8 @@ class Frame extends React.Component {
               transitionName="wisnuc"
               transitionAppear={true}
               transitionAppearTimeout={1000}
-              transitionEnter={500}
-              transitionLeave={300}>
+              transitionEnter={false}
+              transitionLeave={false}>
             <Paper style={style} zDepth={5}>
               <Wisnuc />              
             </Paper>

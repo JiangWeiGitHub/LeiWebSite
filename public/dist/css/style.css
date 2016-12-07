@@ -27,29 +27,21 @@ body {
 
 .wisnuc-appear {
   opacity: 0.01;
-  transform: scale(0.8, 0.8);
+  transform: scale(0.7, 0.7);
 }
 
 .wisnuc-appear.wisnuc-appear-active {
   opacity: 1;
   transform: scale(1, 1);
-  transition: opacity 1000ms ease-in, transform 200ms ease-in;
+  transition: opacity 1000ms ease-in-out, transform 1000ms ease-in-out;
 }
 
-.wisnuc-enter {
+
+.state-in-appear {
   opacity: 0.01;
 }
 
-.wisnuc-enter.wisnuc-enter-active {
+.state-in-appear.state-in-appear-active {
   opacity: 1;
-  transition: opacity 500ms ease-in;
-}
-
-.wisnuc-leave {
-  opacity: 1;
-}
-
-.wisnuc-leave.wisnuc-leave-active {
-  opacity: 0.01;
-  transition: opacity 300ms ease-in;
+  transition: opacity 2000ms ease-in-out;
 }

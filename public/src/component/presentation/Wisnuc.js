@@ -12,6 +12,8 @@ import PreIcon from 'material-ui/svg-icons/navigation/chevron-left'
 import NextIcon from 'material-ui/svg-icons/navigation/chevron-right'
 import CircularProgress from 'material-ui/CircularProgress'
 
+import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
+
 import Skin from '../containers/Skin.js'
 
 import {
@@ -502,60 +504,77 @@ class Wisnuc extends React.Component {
 
     if ( this.state.delay === true ) {
       return (
+
         <div style={wholeWisnuc}>
-          <div style={firstLine}>
-            <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
-            <div style={login}>Login</div>
-            <div style={skin}><Skin /></div>
-          </div>
-          <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
-          <div style={thirdLine}>
 
-            <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-
-          </div>  
-          <div style={fourthLine}>Retrieving data...</div>
-          <div style={fifthLine}>Please wait a moment.</div>
-          <div style={sixthLine}>
-            <div style={wholeWisnuc}>
-              <CircularProgress size={50} thickness={4} />
+            <div style={firstLine}>
+              <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
+              <div style={login}>Login</div>
+              <div style={skin}><Skin /></div>
             </div>
-          </div>
+            <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
+            <div style={thirdLine}>
+
+              <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+
+            </div>  
+            <div style={fourthLine}>Retrieving data...</div>
+            <div style={fifthLine}>Please wait a moment.</div>
+            <div style={sixthLine}>
+              <div style={wholeWisnuc}>
+                <CircularProgress size={50} thickness={4} />
+              </div>
+            </div>
+
         </div>
+
       )    
     }
     else {
       return (
-        <div style={wholeWisnuc}>
-          <div style={firstLine}>
-            <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
-            <div style={login}>Login</div>
-            <div style={skin}><Skin /></div>
-          </div>
-          <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
-          <div style={thirdLine}>
-            {this.preMachineButton()}
-            <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
-            {this.nextMachineButton()}
-          </div>  
-          <div style={fourthLine}>{this.userList[this.state.machineID].host.toLocaleUpperCase()}</div>
-          <div style={fifthLine}>{this.userList[this.state.machineID].ip}</div>
-          <div style={sixthLine}>
-            {this.preUserButton()}
 
-            <div style={userWrapper}>
+        <ReactCSSTransitionGroup
+            transitionName="state-in"
+            transitionAppear={true}
+            transitionAppearTimeout={2000}
+            transitionEnter={false}
+            transitionLeave={false}>
 
-              <div style={this.setCSS()}>
-                {
-                  this.showUserList()
-                }                
+          <div style={wholeWisnuc}>
+
+            <div style={firstLine}>
+              <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
+              <div style={login}>Login</div>
+              <div style={skin}><Skin /></div>
+            </div>
+            <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
+            <div style={thirdLine}>
+              {this.preMachineButton()}
+              <div style={middlePic}><img src="/images/wisnuc/machine.png" width="74" height="74" /></div>
+              {this.nextMachineButton()}
+            </div>  
+            <div style={fourthLine}>{this.userList[this.state.machineID].host.toLocaleUpperCase()}</div>
+            <div style={fifthLine}>{this.userList[this.state.machineID].ip}</div>
+            <div style={sixthLine}>
+              {this.preUserButton()}
+
+              <div style={userWrapper}>
+
+                <div style={this.setCSS()}>
+                  {
+                    this.showUserList()
+                  }                
+                </div>
+
               </div>
 
-            </div>
+              {this.nextUserButton()}
+            </div>         
 
-            {this.nextUserButton()}
           </div>
-        </div>
+
+        </ReactCSSTransitionGroup>
+
       )      
     }
 
