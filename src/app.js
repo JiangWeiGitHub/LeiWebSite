@@ -4,7 +4,6 @@ import bodyParser from 'body-parser'
 import { getDeviceList } from './lib/device'
 import wisnucApi from './lib/user'
 import { beforeUsing } from './lib/system'
-import defaultParameters from './config/config'
 import store from './server/store/store'
 import actions from './server/action/actions'
 import WSServer from './webSocket/server'
@@ -35,6 +34,6 @@ setTimeout( () => {
 
 WSServer()
 
-app.listen(3000, () => {
-  console.log('Listening at port 3000... ...')
+app.listen(4000, () => {
+  console.log('Listening at port 4000... ...')
 })

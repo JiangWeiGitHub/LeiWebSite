@@ -15,7 +15,10 @@ class Skin extends React.Component {
   }
 
   changeBackground() {
-    document.body.style.backgroundImage = "url('/images/backgrounds/bg_img01.jpg')"
+
+    let number = Math.floor(Math.random() * 9) + 1
+
+    document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
     document.body.style.backgroundRepeat = "no-repeat"
     document.body.style.backgroundPosition = "left top"
     document.body.style.backgroundAttachment = "fixed"
