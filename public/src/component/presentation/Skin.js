@@ -31,7 +31,7 @@ class Skin extends React.Component {
 
     return (
       <div>
-        <IconButton onClick={ this.changeBackground }>
+        <IconButton onClick={ switchOpenSkin }>
           <Menu />
         </IconButton>
       </div>

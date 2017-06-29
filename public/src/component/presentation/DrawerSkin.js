@@ -5,16 +5,12 @@ import ReactDom from 'react-dom'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import darkBaseTheme from 'material-ui/styles/baseThemes/darkBaseTheme'
-import {deepOrange500} from 'material-ui/styles/colors'
+import { deepOrange500 } from 'material-ui/styles/colors'
 
 import Drawer from 'material-ui/Drawer'
-import {GridList, GridTile} from 'material-ui/GridList'
-//import IconButton from 'material-ui/IconButton'
-//import StarBorder from 'material-ui/svg-icons/toggle/star-border'
-import Checkbox from 'material-ui/Checkbox'
-import ActionFavorite from 'material-ui/svg-icons/action/favorite'
-import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border'
+import { GridList, GridTile } from 'material-ui/GridList'
 
+import Toggle from 'material-ui/Toggle'
 
 const muiTheme = getMuiTheme({
   palette: {
@@ -32,6 +28,9 @@ const styles = {
     width: '100%',
     height: '100%',
     overflowY: 'auto',
+  },
+  toggle: {
+    marginRight: 10,
   },
 }
 
@@ -87,17 +86,26 @@ const tilesData = [
 class DrawerSkin extends React.Component {
   constructor(props) {
     super(props)
+    this.changeBackground = this.changeBackground.bind(this)
   }
 
-  dealTilesData () {
-    let tmp = tilesData.concat()
-    return tmp
-  }  
+  changeBackground() {
+
+    let number = Math.floor(Math.random() * 9) + 1
+
+    document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
+    document.body.style.backgroundRepeat = "no-repeat"
+    document.body.style.backgroundPosition = "left top"
+    document.body.style.backgroundAttachment = "fixed"
+    document.body.style.backgroundSize = "cover"
+  } 
 
   render() {
-    const {isOpen, onChecked, isChecked} = this.props
+
+    const { isOpen, onChecked, isChecked } = this.props
+
     return (
-      <MuiThemeProvider muiTheme={muiTheme}>
+      <MuiThemeProvider muiTheme={ muiTheme }>
         <div>
           <Drawer width={250} openSecondary={true} open={isOpen} >
             <div style={styles.root}>
@@ -107,21 +115,17 @@ class DrawerSkin extends React.Component {
                 padding={1}
                 style={styles.gridList}
               >
-                {this.dealTilesData().map((tile) => (
+                {tilesData.map((tile) => (
                   <GridTile
                     key={tile.img}
                     title={tile.title}
                     actionIcon={
-                      <MuiThemeProvider muiTheme={getMuiTheme(darkBaseTheme)}>
-                        <Checkbox
-                        style={{'margin-left':10,}}
-                        checkedIcon={<ActionFavorite />}
-                        uncheckedIcon={<ActionFavoriteBorder />}
-                        defaultChecked={tile.isChecked}
-                        onCheck={onChecked}
-                        checked={isChecked}
-                        />
-                      </MuiThemeProvider>}
+                      <Toggle
+                        style={styles.toggle}
+                        defaultToggled={tile.isChecked}
+                        onClick={ this.changeBackground }
+                      />
+                    }
                     actionPosition="left"
                     titlePosition="top"
                     titleBackground="linear-gradient(to bottom, rgba(0,0,0,0.7) 0%,rgba(0,0,0,0.3) 60%,rgba(0,0,0,0) 100%)"

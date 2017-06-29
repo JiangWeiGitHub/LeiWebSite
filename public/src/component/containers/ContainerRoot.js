@@ -1,7 +1,5 @@
 import React from 'react'
-
 import Frame from '../presentation/Frame.js'
-import Skin from './Skin.js'
 
 const background = {
   'display': 'flex',

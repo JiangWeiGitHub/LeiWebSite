@@ -3,6 +3,7 @@ import wisnucApi from './user'
 import defaultParameters from '../config/config'
 
 const beforeUsing = () => {
+
 	/* 1. get a usable device list & user list on a LAN */
 	getDeviceList((rawDeviceData) => {
 		rawDeviceData.forEach( (rawUserData) => {

@@ -6,7 +6,7 @@ import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
-import {deepOrange500} from 'material-ui/styles/colors'
+import { deepOrange500 } from 'material-ui/styles/colors'
 
 import Paper from 'material-ui/Paper'
 
@@ -53,6 +53,7 @@ class Frame extends React.Component {
           </ReactCSSTransitionGroup>
 
           <DrawerSkin />
+
         </div>
       </MuiThemeProvider>
     )
