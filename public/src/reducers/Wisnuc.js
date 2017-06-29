@@ -10,8 +10,6 @@ const defaultState = {
 
 const WisnucState = (state = defaultState, action) => {
   switch (action.type) {
-    case 'SWITCH_OPEN_SKIN':
-      return Object.assign({}, state, { isOpen: !state.isOpen })
     case 'EMPTY_MACHINES':
       return Object.assign({}, state, {
         number: 0,

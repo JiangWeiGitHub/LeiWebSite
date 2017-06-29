@@ -4,8 +4,8 @@ const DrawerSkinState = (state = {
   },
   action) => {
   switch (action.type) {
-    case 'SWITCH_OPEN_SKIN':
-      return Object.assign({}, state, { isOpen: !state.isOpen })
+    // case 'SWITCH_OPEN_SKIN':
+    //   return Object.assign({}, state, { isOpen: !state.isOpen })
     case 'SKIN_CHECKED':
       return Object.assign({}, state, { bgPath: action.bgPath })
     default:
