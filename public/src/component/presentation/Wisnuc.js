@@ -324,8 +324,8 @@ class Wisnuc extends React.Component {
 
   machineIDPlus () {
 
-fourthLine.opacity = 1
-fourthLine.transition = 'opacity 800ms ease-in-out'
+    fourthLine.opacity = 1
+    fourthLine.transition = 'opacity 800ms ease-in-out'
 
     setTimeout(() => {
       this.setState({machineID: this.state.machineID + 1, userID: 0})
@@ -604,7 +604,6 @@ fourthLine.transition = 'opacity 800ms ease-in-out'
 
       )      
     }
-
 
   }
 }

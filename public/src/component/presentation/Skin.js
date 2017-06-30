@@ -11,23 +11,15 @@ import Menu from 'material-ui/svg-icons/navigation/menu'
 class Skin extends React.Component {
   constructor(props) {
     super(props)
-    this.changeBackground = this.changeBackground.bind(this)
   }
-
-  changeBackground() {
-
-    let number = Math.floor(Math.random() * 9) + 1
-
-    document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
-    document.body.style.backgroundRepeat = "no-repeat"
-    document.body.style.backgroundPosition = "left top"
-    document.body.style.backgroundAttachment = "fixed"
-    document.body.style.backgroundSize = "cover"
-  }  
 
   render() {
 
     const { switchOpenSkin } = this.props
+
+    // console.log('>>>>>>>>>>>>>')
+    // console.log(switchOpenSkin)
+    // console.log('<<<<<<<<<<<<<')
 
     return (
       <div>

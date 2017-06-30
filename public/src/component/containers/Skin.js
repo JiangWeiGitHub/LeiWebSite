@@ -4,20 +4,23 @@ import ActionSet from '../../actions/actionSet.js'
 import SkinComponent from '../presentation/Skin.js'
 
 const mapStateToProps = (state) => {
+
   return {
-    isOpen: state.SkinState.isOpen,
+    isOpen: state.DrawerSkinState.isOpen,
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
+
   return {
     switchOpenSkin: () => dispatch(ActionSet.switchOpenSkin())
   }
 }
 
 const Skin = connect(
-  mapStateToProps,
-  // () => {},
+
+  // mapStateToProps,
+  () => {},
   mapDispatchToProps
 )(SkinComponent)
 

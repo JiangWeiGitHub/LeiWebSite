@@ -1,16 +1,12 @@
 import React from 'react'
 import { render } from 'react-dom'
 import ReactDOM from 'react-dom'
-
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
-
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import { deepOrange500 } from 'material-ui/styles/colors'
-
 import Paper from 'material-ui/Paper'
 
-import Skin from '../containers/Skin.js'
 import Wisnuc from './Wisnuc.js'
 import DrawerSkin from '../containers/DrawerSkin.js'
 
@@ -52,7 +48,7 @@ class Frame extends React.Component {
             </Paper>
           </ReactCSSTransitionGroup>
 
-          <DrawerSkin />
+          <DrawerSkin isOpen={false} />
 
         </div>
       </MuiThemeProvider>

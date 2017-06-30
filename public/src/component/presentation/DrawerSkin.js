@@ -86,14 +86,16 @@ const tilesData = [
 class DrawerSkin extends React.Component {
   constructor(props) {
     super(props)
+    this.bg = tilesData[0].img
     this.changeBackground = this.changeBackground.bind(this)
   }
 
   changeBackground() {
 
-    let number = Math.floor(Math.random() * 9) + 1
+    // let number = Math.floor(Math.random() * 9) + 1
 
-    document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
+    // document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
+    document.body.style.backgroundImage = `url(${this.bg})`
     document.body.style.backgroundRepeat = "no-repeat"
     document.body.style.backgroundPosition = "left top"
     document.body.style.backgroundAttachment = "fixed"
@@ -102,7 +104,13 @@ class DrawerSkin extends React.Component {
 
   render() {
 
-    const { isOpen, onChecked, isChecked } = this.props
+    const { isOpen, bgPath } = this.props
+
+    // console.log('>>>>>>>>>>>>>>')
+    // console.log('DrawSkin')
+    // console.log(isOpen)
+    // console.log(bgPath)
+    // console.log('<<<<<<<<<<<<<<')
 
     return (
       <MuiThemeProvider muiTheme={ muiTheme }>
@@ -122,7 +130,7 @@ class DrawerSkin extends React.Component {
                     actionIcon={
                       <Toggle
                         style={styles.toggle}
-                        defaultToggled={tile.isChecked}
+                        defaultToggled={ bgPath === tile.img ? true : false }
                         onClick={ this.changeBackground }
                       />
                     }
