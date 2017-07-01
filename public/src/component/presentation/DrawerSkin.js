@@ -34,68 +34,80 @@ const styles = {
   },
 }
 
-const tilesData = [
-  {
-    img: '/images/backgrounds/bg_img001.jpg',
-    title: 'Default',
-    isChecked: true,
-  },
-  {
-    img: '/images/backgrounds/bg_img01.jpg',
-    title: 'Blue Sea',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img02.jpg',
-    title: 'Yellow Leaf',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img03.jpg',
-    title: 'Purple Sky',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img04.jpg',
-    title: 'Colorful Bubble',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img05.jpg',
-    title: 'Ice River',
-    isChecked: false,
-  },
-
-  {
-    img: '/images/backgrounds/bg_img06.jpg',
-    title: 'Geometric Figure',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img07.jpg',
-    title: 'Ice Ocean',
-    isChecked: false,
-  },
-  {
-    img: '/images/backgrounds/bg_img08.jpg',
-    title: 'Green Nature',
-    isChecked: false,
-  },
-]
-
 class DrawerSkin extends React.Component {
   constructor(props) {
     super(props)
-    this.bg = tilesData[0].img
+    // this.bg = '/images/backgrounds/bg_img001.jpg'
     this.changeBackground = this.changeBackground.bind(this)
+
+    this.tilesData = [
+      {
+        img: '/images/backgrounds/bg_img001.jpg',
+        title: 'Default',
+        isChecked: true,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img001.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img01.jpg',
+        title: 'Blue Sea',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img01.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img02.jpg',
+        title: 'Yellow Leaf',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img02.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img03.jpg',
+        title: 'Purple Sky',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img03.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img04.jpg',
+        title: 'Colorful Bubble',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img04.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img05.jpg',
+        title: 'Ice River',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img05.jpg')
+      },
+
+      {
+        img: '/images/backgrounds/bg_img06.jpg',
+        title: 'Geometric Figure',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img06.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img07.jpg',
+        title: 'Ice Ocean',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img07.jpg')
+      },
+      {
+        img: '/images/backgrounds/bg_img08.jpg',
+        title: 'Green Nature',
+        isChecked: false,
+        changeBackground: this.changeBackground('/images/backgrounds/bg_img08.jpg')
+      },
+    ]
+
   }
 
-  changeBackground() {
+  changeBackground(bg) {
+
+    console.log(bg)
 
     // let number = Math.floor(Math.random() * 9) + 1
 
     // document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
-    document.body.style.backgroundImage = `url(${this.bg})`
+    document.body.style.backgroundImage = `url(${bg})`
     document.body.style.backgroundRepeat = "no-repeat"
     document.body.style.backgroundPosition = "left top"
     document.body.style.backgroundAttachment = "fixed"
@@ -123,7 +135,7 @@ class DrawerSkin extends React.Component {
                 padding={1}
                 style={styles.gridList}
               >
-                {tilesData.map((tile) => (
+                {this.tilesData.map((tile) => (
                   <GridTile
                     key={tile.img}
                     title={tile.title}
@@ -131,7 +143,7 @@ class DrawerSkin extends React.Component {
                       <Toggle
                         style={styles.toggle}
                         defaultToggled={ bgPath === tile.img ? true : false }
-                        onClick={ this.changeBackground }
+                        onClick={ () => { this.changeBackground(tile.img)} }
                       />
                     }
                     actionPosition="left"

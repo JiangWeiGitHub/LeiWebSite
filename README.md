@@ -34,7 +34,7 @@
     
       `createdb jack -U jack`
 
-      PS: If you see `psql: FATAL:  Peer authentication failed ...`, edit `/etc/postgresql/9.?/main/pg_hba.conf`, change `peer` to `trust`
+      PS: If you see `psql: FATAL:  Peer authentication failed ...`, edit `/etc/postgresql/9.?/main/pg_hba.conf`, change `peer` to `trust`, then `systemctl restart postgresql`
 
     - enter into this new database `jack` under user `jack`
     
