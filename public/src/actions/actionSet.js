@@ -18,7 +18,7 @@ const actionSet = {
     }
   },
 
-  onChecked: () => {
+  onChecked: (bgPath) => {
     return {
       type: 'SKIN_CHECKED',
       bgPath

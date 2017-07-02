@@ -11,10 +11,10 @@ const mapStateToProps = (state) => {
   }
 }
 
-const mapDispatchToProps = (dispatch) => {
+const mapDispatchToProps = (dispatch, bgPath) => {
 
   return {
-    onChecked: () => dispatch(ActionSet.onChecked()),
+    onChecked: (bgPath) => dispatch(ActionSet.onChecked(bgPath)),
   }
 }
 

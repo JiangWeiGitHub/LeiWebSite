@@ -37,64 +37,55 @@ const styles = {
 class DrawerSkin extends React.Component {
   constructor(props) {
     super(props)
-    // this.bg = '/images/backgrounds/bg_img001.jpg'
     this.changeBackground = this.changeBackground.bind(this)
+    this.toggle = this.toggle.bind(this)
 
     this.tilesData = [
       {
         img: '/images/backgrounds/bg_img001.jpg',
         title: 'Default',
         isChecked: true,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img001.jpg')
       },
       {
         img: '/images/backgrounds/bg_img01.jpg',
         title: 'Blue Sea',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img01.jpg')
       },
       {
         img: '/images/backgrounds/bg_img02.jpg',
         title: 'Yellow Leaf',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img02.jpg')
       },
       {
         img: '/images/backgrounds/bg_img03.jpg',
         title: 'Purple Sky',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img03.jpg')
       },
       {
         img: '/images/backgrounds/bg_img04.jpg',
         title: 'Colorful Bubble',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img04.jpg')
       },
       {
         img: '/images/backgrounds/bg_img05.jpg',
         title: 'Ice River',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img05.jpg')
       },
 
       {
         img: '/images/backgrounds/bg_img06.jpg',
         title: 'Geometric Figure',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img06.jpg')
       },
       {
         img: '/images/backgrounds/bg_img07.jpg',
         title: 'Ice Ocean',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img07.jpg')
       },
       {
         img: '/images/backgrounds/bg_img08.jpg',
         title: 'Green Nature',
         isChecked: false,
-        changeBackground: this.changeBackground('/images/backgrounds/bg_img08.jpg')
       },
     ]
 
@@ -102,27 +93,36 @@ class DrawerSkin extends React.Component {
 
   changeBackground(bg) {
 
-    console.log(bg)
-
-    // let number = Math.floor(Math.random() * 9) + 1
-
-    // document.body.style.backgroundImage = `url('/images/backgrounds/bg_img0${number}.jpg')`
     document.body.style.backgroundImage = `url(${bg})`
     document.body.style.backgroundRepeat = "no-repeat"
     document.body.style.backgroundPosition = "left top"
     document.body.style.backgroundAttachment = "fixed"
     document.body.style.backgroundSize = "cover"
-  } 
+  }
+
+  toggle(isOpen, bg, onChecked) {
+
+    if(isOpen === true) {
+      this.changeBackground(bg)
+
+      onChecked(bg)
+    }
+    else {
+      this.changeBackground('/images/backgrounds/bg_img001.jpg')
+
+      onChecked(bg)
+    }
+  }
 
   render() {
 
-    const { isOpen, bgPath } = this.props
+    const { isOpen, bgPath, onChecked } = this.props
 
-    // console.log('>>>>>>>>>>>>>>')
-    // console.log('DrawSkin')
-    // console.log(isOpen)
-    // console.log(bgPath)
-    // console.log('<<<<<<<<<<<<<<')
+    console.log('>>>>>>>>>>>>>>')
+    console.log('DrawSkin')
+    console.log(isOpen)
+    console.log(bgPath)
+    console.log('<<<<<<<<<<<<<<')
 
     return (
       <MuiThemeProvider muiTheme={ muiTheme }>
@@ -143,7 +143,9 @@ class DrawerSkin extends React.Component {
                       <Toggle
                         style={styles.toggle}
                         defaultToggled={ bgPath === tile.img ? true : false }
-                        onClick={ () => { this.changeBackground(tile.img)} }
+                        onToggle={ (event, value) => {
+                            this.toggle(value, tile.img, onChecked)
+                          } }
                       />
                     }
                     actionPosition="left"
