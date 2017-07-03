@@ -104,25 +104,23 @@ class DrawerSkin extends React.Component {
 
     if(isOpen === true) {
       this.changeBackground(bg)
-
       onChecked(bg)
     }
     else {
       this.changeBackground('/images/backgrounds/bg_img001.jpg')
-
-      onChecked(bg)
-    }
+      onChecked('/images/backgrounds/bg_img001.jpg')
+    }    
   }
 
   render() {
 
     const { isOpen, bgPath, onChecked } = this.props
 
-    console.log('>>>>>>>>>>>>>>')
-    console.log('DrawSkin')
-    console.log(isOpen)
-    console.log(bgPath)
-    console.log('<<<<<<<<<<<<<<')
+    // console.log('>>>>>>>>>>>>>>')
+    // console.log('DrawSkin')
+    // console.log(isOpen)
+    // console.log(bgPath)
+    // console.log('<<<<<<<<<<<<<<')
 
     return (
       <MuiThemeProvider muiTheme={ muiTheme }>
@@ -142,7 +140,7 @@ class DrawerSkin extends React.Component {
                     actionIcon={
                       <Toggle
                         style={styles.toggle}
-                        defaultToggled={ bgPath === tile.img ? true : false }
+                        toggled={ bgPath === tile.img ? true : false }
                         onToggle={ (event, value) => {
                             this.toggle(value, tile.img, onChecked)
                           } }
