@@ -45,6 +45,8 @@
     "babel-preset-es2016": "^6.16.0",
     "babel-preset-es2017": "^6.16.0",
     "babel-preset-react": "^6.16.0",
+    "electron": "^1.6.11",
+    "electron-builder": "^19.11.1",
     "gulp": "^3.9.1",
     "gulp-babel": "^6.1.2",
     "gulp-cli": "^1.2.2",

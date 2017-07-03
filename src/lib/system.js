@@ -9,11 +9,11 @@ const beforeUsing = () => {
 		rawDeviceData.forEach( (rawUserData) => {
 			global.deviceList.push(rawUserData)
 			wisnucApi.getUserList( rawUserData.referer.address, defaultParameters.serverPort).then( (data) => {
-				let tmp = {}
-				tmp.ip = rawUserData.referer.address
-				tmp.users = data
-				tmp.host = rawUserData.host
-				global.userList.push(tmp)
+        let tmp = {}
+        tmp.ip = rawUserData.referer.address
+        tmp.users = data
+        tmp.host = rawUserData.host
+        global.userList.push(tmp)
 			})
 		}) 
 	})

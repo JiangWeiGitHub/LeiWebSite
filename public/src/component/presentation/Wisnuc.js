@@ -15,6 +15,7 @@ import CircularProgress from 'material-ui/CircularProgress'
 import ReactCSSTransitionGroup from 'react-addons-css-transition-group'
 
 import Skin from '../containers/Skin.js'
+import Update from '../containers/Update.js'
 
 import {
   yellow200,
@@ -107,7 +108,17 @@ const skin = {
   'width': '10%',
   'height': '100%',
   'top': '30',
-  'right': '40',
+  'right': '60',
+  'opacity': '0.5',
+}
+
+const update = {
+  'position': 'absolute',
+  'width': '10%',
+  'height': '100%',
+  'top': '30',
+  'right': '15',
+  'opacity': '0.5',
 }
 
 const secondLine = {
@@ -469,7 +480,7 @@ class Wisnuc extends React.Component {
               </Avatar>
             </IconButton>
           </div>
-          <div style={userName}>{currentValue.username}</div>
+          <div style={userName}>{currentValue.username.length > 6 ? currentValue.username.slice(0, 5) + '...' : currentValue.username.slice(0, 6)}</div>
         </div>
       )
     })
@@ -515,6 +526,7 @@ class Wisnuc extends React.Component {
               <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
               <div style={login}>Login</div>
               <div style={skin}><Skin /></div>
+              <div style={update}><Update /></div>
             </div>
             <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
             <div style={thirdLine}>
@@ -550,6 +562,7 @@ class Wisnuc extends React.Component {
               <div style={wisnucLogo}><img src="/images/wisnuc/logo.png" width="114" height="28" /></div>
               <div style={login}>Login</div>
               <div style={skin}><Skin /></div>
+              <div style={update}><Update /></div>
             </div>
             <div style={secondLine}><span style={diff}>Welcome to use </span>WISNUC</div>
             <div style={thirdLine}>
