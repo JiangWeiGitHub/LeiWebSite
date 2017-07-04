@@ -356,7 +356,7 @@ class Wisnuc extends React.Component {
   }  
 
   componentWillMount () {
-    let path = 'ws://' + location.hostname + ':8080/'
+    let path = 'ws://localhost:8080/'
     let websocket = new WebSocket(path, 'jiangwei-protocol')
     websocket.onopen = () => { 
       websocket.send("getSystemInfor")
@@ -547,6 +547,7 @@ class Wisnuc extends React.Component {
       )    
     }
     else {
+
       return (
 
         <ReactCSSTransitionGroup

@@ -1,0 +1,18 @@
+appId: com.wisnuc.app
+copyright: wisnuc
+productName: fruitmix-desktop
+
+asar: false
+
+directories:
+  buildResources: /
+  output: dist/
+
+files:
+  - "**/*"
+
+linux:
+  target:
+    - deb
+    - AppImage
+
