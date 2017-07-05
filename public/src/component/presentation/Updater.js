@@ -43,8 +43,8 @@ autoUpdater.on('update-downloaded', () => {
   })
 })
 
-function checkForUpdates (menuItem, focusedWindow, event) {
-  updater = menuItem
+function checkForUpdates () {
+  // updater = menuItem
   updater.enabled = false
   autoUpdater.checkForUpdates()
 }

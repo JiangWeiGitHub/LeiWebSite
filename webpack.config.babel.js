@@ -6,6 +6,7 @@ module.exports = {
   entry: {
     public: './public/src/index'
   },
+  target: 'electron-main',
   output: {
     path: path.join(__dirname, '/public/dist'),
     filename: 'bundle.js',

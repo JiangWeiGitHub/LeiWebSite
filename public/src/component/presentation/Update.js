@@ -4,11 +4,13 @@ import { render } from 'react-dom'
 import IconButton from 'material-ui/IconButton'
 import Cached from 'material-ui/svg-icons/action/cached'
 
-
 import Dialog from 'material-ui/Dialog';
 import FlatButton from 'material-ui/FlatButton';
 import RaisedButton from 'material-ui/RaisedButton';
 import DatePicker from 'material-ui/DatePicker';
+
+// import checkForUpdates from './Updater'
+import  { autoUpdater } from '../electron/communicate'
 
 class Update extends React.Component {
   constructor(props) {
@@ -25,9 +27,11 @@ class Update extends React.Component {
     this.handleClose = () => {
       this.setState({open: false});
     };
+
+    // this.test = () => {
+    //   // autoUpdater.checkForUpdates()
+    // }
   }
-
-
 
   render() {
 
@@ -38,10 +42,9 @@ class Update extends React.Component {
         label="Ok"
         primary={true}
         keyboardFocused={true}
-        onClick={this.handleClose}
+        onClick={this.handleOpen}
       />,
     ];
-
 
     // console.log('>>>>>>>>>>>>>')
     // console.log(switchOpenSkin)
